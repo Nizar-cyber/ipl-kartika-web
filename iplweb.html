@@ -1,1052 +1,231 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IPL Kartika Residence</title>
-<style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}
-body{background:#F6F8F7;color:#0D1F1A;font-size:14px}
-.hidden{display:none!important}
+<!DOCTYPE html><html lang="id"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>IPL Kartika Residence</title><style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Arial,sans-serif}body{background:#F6F8F7;color:#0D1F1A;font-size:14px}.hidden{display:none!important}
 .login-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0A6644,#0F8A5F);padding:20px}
-.login-box{background:white;padding:36px 32px;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,0.15);width:100%;max-width:420px}
-.login-box h1{color:#0A6644;text-align:center;margin-bottom:6px;font-size:22px}
-.login-box p.sub{text-align:center;color:#5A7268;margin-bottom:22px;font-size:12px}
+.login-box{background:white;padding:32px;border-radius:16px;box-shadow:0 8px 24px rgba(0,0,0,.15);width:100%;max-width:420px}
+.login-box h1{color:#0A6644;text-align:center;margin-bottom:6px;font-size:22px}.login-box p.sub{text-align:center;color:#5A7268;margin-bottom:22px;font-size:12px}
 .tabs-login{display:flex;gap:8px;margin-bottom:20px;background:#F6F8F7;padding:4px;border-radius:8px}
 .tabs-login button{flex:1;padding:9px;background:transparent;border:none;border-radius:6px;font-weight:600;cursor:pointer;color:#5A7268;font-size:13px}
 .tabs-login button.active{background:#0F8A5F;color:white}
-.topbar{background:linear-gradient(135deg,#0A6644,#0F8A5F);color:white;padding:12px 20px;display:flex;justify-content:space-between;align-items:center}
-.topbar h1{font-size:17px}
-.topbar .u{font-size:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.topbar button{background:rgba(255,255,255,0.2);color:white;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:12px}
-.topbar button:hover{background:rgba(255,255,255,0.3)}
+.topbar{background:linear-gradient(135deg,#0A6644,#0F8A5F);color:white;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.topbar h1{font-size:17px}.topbar .u{font-size:12px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.topbar button{background:rgba(255,255,255,.2);color:white;border:none;padding:6px 12px;border-radius:6px;cursor:pointer;font-size:12px}
 .layout{display:grid;grid-template-columns:220px 1fr;min-height:calc(100vh - 50px)}
 .sidebar{background:white;border-right:1px solid #E8F0EC;padding:12px 0}
 .sidebar a{display:block;padding:11px 20px;color:#0D1F1A;text-decoration:none;font-size:13px;font-weight:500;border-left:3px solid transparent;cursor:pointer}
-.sidebar a:hover{background:#F6F8F7}
-.sidebar a.active{background:#DFF5E8;color:#0A6644;border-left-color:#0F8A5F;font-weight:600}
+.sidebar a:hover{background:#F6F8F7}.sidebar a.active{background:#DFF5E8;color:#0A6644;border-left-color:#0F8A5F;font-weight:600}
 .content{padding:20px;overflow-x:auto}
 @media(max-width:900px){.layout{grid-template-columns:1fr}.sidebar{display:flex;overflow-x:auto;padding:8px}.sidebar a{white-space:nowrap;border-left:none;border-bottom:3px solid transparent}.sidebar a.active{border-left:none;border-bottom-color:#0F8A5F}}
-.card{background:white;border-radius:10px;padding:18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
-.card h2{color:#0A6644;margin-bottom:12px;font-size:16px}
-.g{display:grid;gap:10px}
-.g2{grid-template-columns:repeat(2,1fr)}
-.g3{grid-template-columns:repeat(3,1fr)}
-.g4{grid-template-columns:repeat(4,1fr)}
+.card{background:white;border-radius:10px;padding:18px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.04)}.card h2{color:#0A6644;margin-bottom:12px;font-size:16px}
+.g{display:grid;gap:10px}.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
 @media(max-width:700px){.g2,.g3,.g4{grid-template-columns:1fr}}
-.stat{background:white;padding:14px;border-radius:10px;border-left:4px solid #0F8A5F;text-align:center}
-.stat.d{border-left-color:#E53935}.stat.w{border-left-color:#F59E0B}
-.stat h4{color:#5A7268;font-size:11px;margin-bottom:4px}
-.stat .v{font-size:20px;font-weight:bold;color:#0F8A5F}
-.stat.d .v{color:#E53935}.stat.w .v{color:#F59E0B}
-.hero-tagihan{background:linear-gradient(135deg,#C62828,#E53935);color:white;padding:24px;border-radius:14px;margin-bottom:16px}
-.hero-tagihan.ok{background:linear-gradient(135deg,#0A6644,#0F8A5F)}
-.hero-tagihan h3{font-size:13px;opacity:0.9;margin-bottom:6px}
-.hero-tagihan .amt{font-size:30px;font-weight:bold;margin-bottom:6px}
-.hero-tagihan .sub{font-size:12px;opacity:0.85}
-.tbl-wrap{overflow-x:auto;background:white;border-radius:10px}
-table{width:100%;border-collapse:collapse}
-th{background:#E8F0EC;padding:10px 12px;text-align:left;font-size:12px;font-weight:600}
-td{padding:10px 12px;border-bottom:1px solid #F0F0F0;font-size:13px}
-tr:hover td{background:#F9FBFA}
+.stat{background:white;padding:14px;border-radius:10px;border-left:4px solid #0F8A5F;text-align:center}.stat.d{border-left-color:#E53935}.stat.w{border-left-color:#F59E0B}
+.stat h4{color:#5A7268;font-size:11px;margin-bottom:4px}.stat .v{font-size:20px;font-weight:bold;color:#0F8A5F}.stat.d .v{color:#E53935}.stat.w .v{color:#F59E0B}
+.hero{background:linear-gradient(135deg,#C62828,#E53935);color:white;padding:24px;border-radius:14px;margin-bottom:16px}.hero.ok{background:linear-gradient(135deg,#0A6644,#0F8A5F)}
+.hero h3{font-size:13px;opacity:.9;margin-bottom:6px}.hero .amt{font-size:30px;font-weight:bold;margin-bottom:6px}.hero .sub{font-size:12px;opacity:.85}
+.tbl-wrap{overflow-x:auto;background:white;border-radius:10px}table{width:100%;border-collapse:collapse}
+th{background:#E8F0EC;padding:10px 12px;text-align:left;font-size:12px;font-weight:600}td{padding:10px 12px;border-bottom:1px solid #F0F0F0;font-size:13px}tr:hover td{background:#F9FBFA}
 .btn{padding:7px 14px;border-radius:6px;border:none;cursor:pointer;font-size:12px;font-weight:600;display:inline-flex;align-items:center;gap:4px}
-.btn-primary{background:#0F8A5F;color:white}.btn-primary:hover{background:#0A6644}
-.btn-danger{background:#E53935;color:white}.btn-danger:hover{background:#C62828}
-.btn-warning{background:#F59E0B;color:white}.btn-warning:hover{background:#D97706}
-.btn-secondary{background:#E8F0EC;color:#0D1F1A}.btn-secondary:hover{background:#DFF5E8}
-.btn-excel{background:#217346;color:white}.btn-excel:hover{background:#1e5e3a}
-.btn-sm{padding:4px 10px;font-size:11px}
-button:disabled{opacity:0.5;cursor:not-allowed}
-.fg{margin-bottom:12px}
-.fg label{display:block;margin-bottom:5px;font-weight:600;font-size:12px}
+.btn-primary{background:#0F8A5F;color:white}.btn-primary:hover{background:#0A6644}.btn-danger{background:#E53935;color:white}.btn-warning{background:#F59E0B;color:white}
+.btn-secondary{background:#E8F0EC;color:#0D1F1A}.btn-excel{background:#217346;color:white}.btn-sm{padding:4px 10px;font-size:11px}button:disabled{opacity:.5;cursor:not-allowed}
+.fg{margin-bottom:12px}.fg label{display:block;margin-bottom:5px;font-weight:600;font-size:12px}
 .fg input,.fg select,.fg textarea{width:100%;padding:9px 11px;border:1px solid #DDE4E0;border-radius:6px;font-size:13px;font-family:inherit}
-.fg input:focus,.fg select:focus,.fg textarea:focus{outline:none;border-color:#0F8A5F;box-shadow:0 0 0 2px rgba(15,138,95,0.15)}
 .b{display:inline-block;padding:3px 10px;border-radius:12px;font-size:10px;font-weight:600}
-.b-s{background:#DFF5E8;color:#0F8A5F}.b-d{background:#FDECEA;color:#E53935}
-.b-w{background:#FFF8E1;color:#F59E0B}.b-i{background:#E3F2FD;color:#1976D2}.b-g{background:#E8F0EC;color:#5A7268}
-.toast{position:fixed;bottom:20px;right:20px;background:#0F8A5F;color:white;padding:11px 18px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.15);z-index:9999;animation:sl 0.3s;max-width:90%}
-.toast.err{background:#E53935}
-@keyframes sl{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
-.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px}
-.modal{background:white;border-radius:12px;padding:22px;max-width:500px;width:100%;max-height:90vh;overflow-y:auto}
-.modal h3{color:#0A6644;margin-bottom:12px}
+.b-s{background:#DFF5E8;color:#0F8A5F}.b-d{background:#FDECEA;color:#E53935}.b-w{background:#FFF8E1;color:#F59E0B}.b-i{background:#E3F2FD;color:#1976D2}.b-g{background:#E8F0EC;color:#5A7268}
+.b-link{background:#E3F2FD;color:#1976D2;border:1px solid #90CAF9}
+.toast{position:fixed;bottom:20px;right:20px;background:#0F8A5F;color:white;padding:11px 18px;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,.15);z-index:9999}.toast.err{background:#E53935}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:1000;padding:20px}
+.modal{background:white;border-radius:12px;padding:22px;max-width:500px;width:100%;max-height:90vh;overflow-y:auto}.modal h3{color:#0A6644;margin-bottom:12px}
 .modal-act{display:flex;gap:8px;justify-content:flex-end;margin-top:16px}
 .filter{background:white;padding:12px;border-radius:10px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
 .filter input,.filter select{padding:7px 11px;border:1px solid #DDE4E0;border-radius:6px;font-size:12px}
 .loading{text-align:center;padding:30px;color:#5A7268}
 h3.section-title{color:#0A6644;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
 .bill-item{display:flex;align-items:center;gap:12px;padding:12px;border:1.5px solid #E8F0EC;border-radius:10px;margin-bottom:8px;cursor:pointer}
-.bill-item.selected{border-color:#0F8A5F;background:#DFF5E8}
-.bill-item.tunggakan{border-color:#FDECEA}
-.bill-item input[type=checkbox]{width:18px;height:18px}
-.bill-item .info{flex:1}
-.bill-item .info b{display:block;font-size:13px}
-.bill-item .info small{color:#5A7268;font-size:11px}
-.rek-box{background:#F1F8E9;padding:14px;border-radius:10px;margin-bottom:14px;border:1px dashed #0F8A5F}
-.rek-box div{display:flex;justify-content:space-between;padding:3px 0}
-.rek-box b{color:#0A6644}
-</style>
-</head>
-<body>
+.bill-item.selected{border-color:#0F8A5F;background:#DFF5E8}.bill-item.tunggakan{border-color:#FDECEA}
+.bill-item input[type=checkbox]{width:18px;height:18px}.bill-item .info{flex:1}.bill-item .info b{display:block;font-size:13px}.bill-item .info small{color:#5A7268;font-size:11px}
+.rek{background:#F1F8E9;padding:14px;border-radius:10px;margin-bottom:14px;border:1px dashed #0F8A5F}.rek div{display:flex;justify-content:space-between;padding:3px 0}.rek b{color:#0A6644}
+.chart-box{background:white;padding:16px;border-radius:10px;margin-bottom:14px;box-shadow:0 1px 3px rgba(0,0,0,.04)}.chart-box h4{color:#0A6644;font-size:14px;margin-bottom:12px}
+</style></head><body>
 
-<!-- ============ LOGIN / REGISTER PAGE ============ -->
-<div id="page-login" class="login-wrap">
-  <div class="login-box">
-    <h1>🏠 IPL Kartika</h1>
-    <p class="sub">Kartika Residence — Cluster Kawaluyaan</p>
+<div id="page-login" class="login-wrap"><div class="login-box"><h1>🏠 IPL Kartika</h1><p class="sub">Kartika Residence — Cluster Kawaluyaan</p>
+<div class="tabs-login"><button id="tab-login-btn" class="active" onclick="switchTab('login')">Login</button><button id="tab-register-btn" onclick="switchTab('register')">Daftar Warga</button></div>
+<form id="login-form"><div class="fg"><label>Email</label><input type="email" id="li-email" required></div><div class="fg"><label>Password</label><input type="password" id="li-pass" required></div><button type="submit" class="btn btn-primary" id="btn-login" style="width:100%;justify-content:center;padding:11px">Login</button></form>
+<form id="register-form" class="hidden"><div class="fg"><label>Email</label><input type="email" id="rg-email" required></div><div class="fg"><label>Password (min 6)</label><input type="password" id="rg-pass" required minlength="6"></div><div class="fg"><label>Konfirmasi</label><input type="password" id="rg-pass2" required minlength="6"></div><button type="submit" class="btn btn-primary" id="btn-register" style="width:100%;justify-content:center;padding:11px">Daftar Akun</button></form>
+<p style="text-align:center;margin-top:16px;color:#5A7268;font-size:11px">© 2026 Kartika Residence</p></div></div>
 
-    <div class="tabs-login">
-      <button id="tab-login-btn" class="active" onclick="switchTab('login')">Login</button>
-      <button id="tab-register-btn" onclick="switchTab('register')">Daftar Warga</button>
-    </div>
+<div id="page-setup" class="login-wrap hidden"><div class="login-box" style="max-width:500px"><h1>📝 Lengkapi Data</h1><p class="sub">Data rumah Anda</p>
+<form id="setup-form"><div class="fg"><label>Nama Lengkap *</label><input type="text" id="sp-name" required></div><div class="fg"><label>No HP</label><input type="tel" id="sp-phone"></div>
+<div class="g g2"><div class="fg"><label>Blok *</label><input type="text" id="sp-blok" required style="text-transform:uppercase"></div><div class="fg"><label>No Rumah *</label><input type="text" id="sp-noRumah" required></div></div>
+<div class="fg"><label>Luas Tanah (m²)</label><input type="number" id="sp-luas"></div>
+<div class="fg"><label>Status Rumah *</label><select id="sp-hs" required><option value="milik_sendiri">Rumah Sendiri</option><option value="kontrak">Kontrak</option><option value="kosong">Rumah Kosong</option></select></div>
+<button type="submit" class="btn btn-primary" id="btn-setup" style="width:100%;justify-content:center;padding:11px">💾 Simpan</button></form></div></div>
 
-    <!-- LOGIN FORM -->
-    <form id="login-form">
-      <div class="fg"><label>Email</label><input type="email" id="li-email" required autocomplete="email"></div>
-      <div class="fg"><label>Password</label><input type="password" id="li-pass" required autocomplete="current-password"></div>
-      <button type="submit" class="btn btn-primary" id="btn-login" style="width:100%;justify-content:center;padding:11px">Login</button>
-    </form>
+<div id="page-app" class="hidden"><div class="topbar"><h1>🏠 IPL Kartika Admin</h1><div class="u"><span id="user-name">-</span><span class="b b-i" id="user-role">-</span><button onclick="doLogout()">Logout</button></div></div>
+<div class="layout"><nav class="sidebar">
+<a data-tab="dashboard" class="active">📊 Dashboard</a><a data-tab="warga">👥 Kelola Warga</a><a data-tab="bills">🧾 Kelola Tagihan</a><a data-tab="finance">💰 Laporan Keuangan</a>
+<a data-tab="settings">⚙️ Pengaturan IPL</a><a data-tab="documents">📄 Dokumen</a><a data-tab="audit">📋 Log Aktivitas</a></nav>
+<main class="content">
+<section id="tab-dashboard"><h3 class="section-title"><span>📊 Dashboard</span></h3><div class="g g4" id="stats-container"><div class="loading">Loading...</div></div></section>
+<section id="tab-warga" class="hidden"><h3 class="section-title"><span>👥 Kelola Warga</span><button class="btn btn-excel" onclick="exportWargaExcel()">📊 Excel</button></h3>
+<div class="filter"><input type="text" id="warga-search" placeholder="Cari..."><select id="warga-role"><option value="semua">Semua Role</option><option value="warga">Warga</option><option value="admin">Admin</option></select><button class="btn btn-primary" onclick="showWargaForm()">+ Tambah</button></div>
+<div class="tbl-wrap"><table id="warga-tbl"><thead><tr><th>Blok/No</th><th>Nama</th><th>Email</th><th>HP</th><th>Status</th><th>Role</th><th>Aksi</th></tr></thead><tbody><tr><td colspan="7" class="loading">Loading...</td></tr></tbody></table></div></section>
+<section id="tab-bills" class="hidden"><h3 class="section-title"><span>🧾 Kelola Tagihan</span><button class="btn btn-excel" onclick="exportBillsExcel()">📊 Excel</button></h3>
+<div class="filter"><select id="bills-bulan"><option value="semua">Semua Bulan</option></select><select id="bills-status"><option value="semua">Semua Status</option><option value="lunas">Lunas</option><option value="pending">Pending</option><option value="belum_bayar">Belum Bayar</option></select><input type="text" id="bills-search" placeholder="Cari..."><button class="btn btn-primary" onclick="generateBills()">+ Generate</button></div>
+<div class="tbl-wrap"><table id="bills-tbl"><thead><tr><th>Warga</th><th>Blok/No</th><th>Periode</th><th>Nominal</th><th>Status</th><th>Bukti</th><th>Aksi</th></tr></thead><tbody><tr><td colspan="7" class="loading">Loading...</td></tr></tbody></table></div></section>
+<section id="tab-finance" class="hidden"><h3 class="section-title"><span>💰 Laporan Keuangan</span><button class="btn btn-excel" onclick="exportFinanceExcel()">📊 Excel</button></h3>
+<div class="g g3" id="finance-stats"><div class="loading">Loading...</div></div>
+<div class="chart-box" style="margin-top:14px"><h4>📊 Trend Bulanan</h4><canvas id="chart-bar" height="80"></canvas></div>
+<div class="g g2"><div class="chart-box"><h4>💰 Pemasukan per Kategori</h4><canvas id="chart-masuk" height="150"></canvas></div><div class="chart-box"><h4>💸 Pengeluaran per Kategori</h4><canvas id="chart-keluar" height="150"></canvas></div></div>
+<div class="filter" style="margin-top:14px"><select id="fin-bulan"><option value="0" selected>🔄 Semua Bulan</option></select><select id="fin-tahun"><option value="0" selected>🔄 Semua Tahun</option></select><select id="fin-tipe"><option value="semua">Semua</option><option value="masuk">Pemasukan</option><option value="keluar">Pengeluaran</option></select><button class="btn btn-primary" onclick="showFinanceForm()">+ Tambah</button></div>
+<div class="tbl-wrap"><table id="finance-tbl"><thead><tr><th>Tanggal</th><th>Tipe</th><th>Kategori</th><th>Deskripsi</th><th>Nominal</th><th>Aksi</th></tr></thead><tbody><tr><td colspan="6" class="loading">Loading...</td></tr></tbody></table></div></section>
+<section id="tab-settings" class="hidden"><h3 class="section-title"><span>⚙️ Pengaturan IPL</span></h3>
+<div class="card"><div class="fg"><label>🏡 Rumah Sendiri (Rp)</label><input type="number" id="set-milik"></div><div class="fg"><label>🔑 Kontrak (Rp)</label><input type="number" id="set-kontrak"></div><div class="fg"><label>🏚️ Kosong (Rp)</label><input type="number" id="set-kosong"></div><button class="btn btn-primary" onclick="saveSettings()">💾 Simpan</button></div></section>
+<section id="tab-documents" class="hidden"><h3 class="section-title"><span>📄 Kelola Dokumen</span></h3>
+<div class="card"><div class="fg"><label>Judul</label><input type="text" id="doc-title"></div><div class="fg"><label>PDF</label><input type="file" id="doc-file" accept="application/pdf"></div><button class="btn btn-primary" onclick="uploadDoc()">📤 Upload</button></div>
+<div class="tbl-wrap"><table id="doc-tbl"><thead><tr><th>Judul</th><th>File</th><th>Tanggal</th><th>Aksi</th></tr></thead><tbody><tr><td colspan="4" class="loading">Loading...</td></tr></tbody></table></div></section>
+<section id="tab-audit" class="hidden"><h3 class="section-title"><span>📋 Log Aktivitas</span><button class="btn btn-excel" onclick="exportAuditExcel()">📊 Excel</button></h3>
+<div class="filter"><select id="au-periode"><option value="hari_ini">Hari Ini</option><option value="7hari" selected>7 Hari</option><option value="bulan_ini">Bulan Ini</option><option value="semua">Semua</option></select><select id="au-modul"><option value="semua">Semua Modul</option><option value="Auth">Auth</option><option value="Warga">Warga</option><option value="Tagihan">Tagihan</option><option value="Keuangan">Keuangan</option><option value="Dokumen">Dokumen</option><option value="Pengaturan">Pengaturan</option></select><select id="au-role"><option value="semua">Semua Role</option><option value="admin">Admin</option><option value="superuser">Superuser</option></select><input type="text" id="au-search" placeholder="Cari..."></div>
+<div class="tbl-wrap"><table id="audit-tbl"><thead><tr><th>Waktu</th><th>User</th><th>Role</th><th>Modul</th><th>Action</th><th>Detail</th></tr></thead><tbody><tr><td colspan="6" class="loading">Loading...</td></tr></tbody></table></div></section>
+</main></div></div>
 
-    <!-- REGISTER FORM -->
-    <form id="register-form" class="hidden">
-      <div class="fg"><label>Email</label><input type="email" id="rg-email" required></div>
-      <div class="fg"><label>Password (min 6 karakter)</label><input type="password" id="rg-pass" required minlength="6"></div>
-      <div class="fg"><label>Konfirmasi Password</label><input type="password" id="rg-pass2" required minlength="6"></div>
-      <button type="submit" class="btn btn-primary" id="btn-register" style="width:100%;justify-content:center;padding:11px">Daftar Akun</button>
-      <p style="text-align:center;margin-top:10px;font-size:11px;color:#5A7268">Setelah daftar, lengkapi data rumah Anda</p>
-    </form>
-
-    <p style="text-align:center;margin-top:16px;color:#5A7268;font-size:11px">© 2026 Kartika Residence</p>
-  </div>
-</div>
-
-<!-- ============ SETUP PROFILE (untuk warga baru) ============ -->
-<div id="page-setup" class="login-wrap hidden">
-  <div class="login-box" style="max-width:500px">
-    <h1>📝 Lengkapi Data</h1>
-    <p class="sub">Silakan lengkapi data rumah Anda untuk mulai menggunakan aplikasi IPL</p>
-    <form id="setup-form">
-      <div class="fg"><label>Nama Lengkap *</label><input type="text" id="sp-name" required></div>
-      <div class="fg"><label>No HP</label><input type="tel" id="sp-phone" placeholder="081234567890"></div>
-      <div class="g g2">
-        <div class="fg"><label>Blok *</label><input type="text" id="sp-blok" required style="text-transform:uppercase"></div>
-        <div class="fg"><label>No Rumah *</label><input type="text" id="sp-noRumah" required></div>
-      </div>
-      <div class="fg"><label>Luas Tanah (m²)</label><input type="number" id="sp-luas"></div>
-      <div class="fg"><label>Status Rumah *</label>
-        <select id="sp-hs" required>
-          <option value="milik_sendiri">Rumah Sendiri</option>
-          <option value="kontrak">Kontrak / Sewa</option>
-          <option value="kosong">Rumah Kosong</option>
-        </select>
-      </div>
-      <button type="submit" class="btn btn-primary" id="btn-setup" style="width:100%;justify-content:center;padding:11px">💾 Simpan & Lanjutkan</button>
-    </form>
-  </div>
-</div>
-
-<!-- ============ ADMIN APP ============ -->
-<div id="page-app" class="hidden">
-  <div class="topbar">
-    <h1>🏠 IPL Kartika Admin</h1>
-    <div class="u">
-      <span id="user-name">-</span>
-      <span class="b b-i" id="user-role">-</span>
-      <button onclick="doLogout()">Logout</button>
-    </div>
-  </div>
-  <div class="layout">
-    <nav class="sidebar">
-      <a data-tab="dashboard" class="active">📊 Dashboard</a>
-      <a data-tab="warga">👥 Kelola Warga</a>
-      <a data-tab="bills">🧾 Kelola Tagihan</a>
-      <a data-tab="finance">💰 Laporan Keuangan</a>
-      <a data-tab="settings">⚙️ Pengaturan IPL</a>
-      <a data-tab="documents">📄 Dokumen</a>
-      <a data-tab="audit">📋 Log Aktivitas</a>
-    </nav>
-    <main class="content">
-      <section id="tab-dashboard">
-        <h3 class="section-title"><span>📊 Dashboard</span></h3>
-        <div class="g g4" id="stats-container"><div class="loading">Loading...</div></div>
-      </section>
-      <section id="tab-warga" class="hidden">
-        <h3 class="section-title"><span>👥 Kelola Warga</span><button class="btn btn-excel" onclick="exportWargaExcel()">📊 Excel</button></h3>
-        <div class="filter">
-          <input type="text" id="warga-search" placeholder="Cari nama, blok, no rumah...">
-          <select id="warga-role"><option value="semua">Semua Role</option><option value="warga">Warga</option><option value="admin">Admin</option></select>
-          <button class="btn btn-primary" onclick="showWargaForm()">+ Tambah</button>
-        </div>
-        <div class="tbl-wrap"><table id="warga-tbl"><thead><tr><th>Blok/No</th><th>Nama</th><th>Email</th><th>HP</th><th>Status</th><th>Role</th><th>Aksi</th></tr></thead><tbody><tr><td colspan="7" class="loading">Loading...</td></tr></tbody></table></div>
-      </section>
-      <section id="tab-bills" class="hidden">
-        <h3 class="section-title"><span>🧾 Kelola Tagihan</span><button class="btn btn-excel" onclick="exportBillsExcel()">📊 Excel</button></h3>
-        <div class="filter">
-          <select id="bills-bulan"><option value="semua">Semua Bulan</option></select>
-          <select id="bills-status"><option value="semua">Semua Status</option><option value="lunas">Lunas</option><option value="pending">Pending</option><option value="belum_bayar">Belum Bayar</option></select>
-          <input type="text" id="bills-search" placeholder="Cari nama, blok...">
-          <button class="btn btn-primary" onclick="generateBills()">+ Generate</button>
-        </div>
-        <div class="tbl-wrap"><table id="bills-tbl"><thead><tr><th>Warga</th><th>Blok/No</th><th>Periode</th><th>Nominal</th><th>Status</th><th>Bukti</th><th>Aksi</th></tr></thead><tbody><tr><td colspan="7" class="loading">Loading...</td></tr></tbody></table></div>
-      </section>
-      <section id="tab-finance" class="hidden">
-        <h3 class="section-title"><span>💰 Laporan Keuangan</span><button class="btn btn-excel" onclick="exportFinanceExcel()">📊 Excel</button></h3>
-        <div class="g g3" id="finance-stats"><div class="loading">Loading...</div></div>
-        <div class="filter" style="margin-top:14px">
-          <select id="fin-bulan"></select>
-          <select id="fin-tipe"><option value="semua">Semua</option><option value="masuk">Pemasukan</option><option value="keluar">Pengeluaran</option></select>
-          <button class="btn btn-primary" onclick="showFinanceForm()">+ Tambah</button>
-        </div>
-        <div class="tbl-wrap"><table id="finance-tbl"><thead><tr><th>Tanggal</th><th>Tipe</th><th>Kategori</th><th>Deskripsi</th><th>Nominal</th><th>Aksi</th></tr></thead><tbody><tr><td colspan="6" class="loading">Loading...</td></tr></tbody></table></div>
-      </section>
-      <section id="tab-settings" class="hidden">
-        <h3 class="section-title"><span>⚙️ Pengaturan Nominal IPL</span></h3>
-        <div class="card">
-          <div class="fg"><label>🏡 Rumah Sendiri (Rp)</label><input type="number" id="set-milik"></div>
-          <div class="fg"><label>🔑 Kontrak/Sewa (Rp)</label><input type="number" id="set-kontrak"></div>
-          <div class="fg"><label>🏚️ Rumah Kosong (Rp)</label><input type="number" id="set-kosong"></div>
-          <button class="btn btn-primary" onclick="saveSettings()">💾 Simpan</button>
-        </div>
-      </section>
-      <section id="tab-documents" class="hidden">
-        <h3 class="section-title"><span>📄 Kelola Dokumen</span><button class="btn btn-excel" onclick="exportDocsExcel()">📊 Excel</button></h3>
-        <div class="card">
-          <div class="fg"><label>Judul Dokumen</label><input type="text" id="doc-title"></div>
-          <div class="fg"><label>File PDF</label><input type="file" id="doc-file" accept="application/pdf"></div>
-          <button class="btn btn-primary" onclick="uploadDoc()">📤 Upload</button>
-        </div>
-        <div class="tbl-wrap"><table id="doc-tbl"><thead><tr><th>Judul</th><th>File</th><th>Tanggal</th><th>Aksi</th></tr></thead><tbody><tr><td colspan="4" class="loading">Loading...</td></tr></tbody></table></div>
-      </section>
-      <section id="tab-audit" class="hidden">
-        <h3 class="section-title"><span>📋 Log Aktivitas</span><button class="btn btn-excel" onclick="exportAuditExcel()">📊 Excel</button></h3>
-        <div class="filter">
-          <select id="au-periode"><option value="hari_ini">Hari Ini</option><option value="7hari" selected>7 Hari</option><option value="bulan_ini">Bulan Ini</option><option value="semua">Semua</option></select>
-          <select id="au-modul"><option value="semua">Semua Modul</option><option value="Auth">Auth</option><option value="Warga">Warga</option><option value="Tagihan">Tagihan</option><option value="Keuangan">Keuangan</option><option value="Dokumen">Dokumen</option><option value="Pengaturan">Pengaturan</option></select>
-          <select id="au-role"><option value="semua">Semua Role</option><option value="admin">Admin</option><option value="superuser">Superuser</option></select>
-          <input type="text" id="au-search" placeholder="Cari...">
-        </div>
-        <div class="tbl-wrap"><table id="audit-tbl"><thead><tr><th>Waktu</th><th>User</th><th>Role</th><th>Modul</th><th>Action</th><th>Detail</th></tr></thead><tbody><tr><td colspan="6" class="loading">Loading...</td></tr></tbody></table></div>
-      </section>
-    </main>
-  </div>
-</div>
-
-<!-- ============ WARGA APP ============ -->
-<div id="page-warga" class="hidden">
-  <div class="topbar">
-    <h1>🏠 IPL Kartika Warga</h1>
-    <div class="u">
-      <span id="warga-user-name">-</span>
-      <span class="b b-s">WARGA</span>
-      <button onclick="doLogout()">Logout</button>
-    </div>
-  </div>
-  <div class="layout">
-    <nav class="sidebar">
-      <a data-wtab="home" class="active">🏠 Beranda</a>
-      <a data-wtab="bayar">💳 Bayar IPL</a>
-      <a data-wtab="history">📜 Riwayat</a>
-      <a data-wtab="profile">👤 Profil</a>
-      <a data-wtab="docs">📄 Dokumen</a>
-    </nav>
-    <main class="content">
-      <section id="wtab-home">
-        <h3 class="section-title"><span>🏠 Selamat Datang, <span id="warga-hello">-</span></span></h3>
-        <div id="warga-hero"><div class="loading">Loading...</div></div>
-        <div class="card">
-          <h2>📋 Informasi Rumah</h2>
-          <div id="warga-info"></div>
-        </div>
-      </section>
-
-      <section id="wtab-bayar" class="hidden">
-        <h3 class="section-title"><span>💳 Bayar IPL</span></h3>
-        <div class="rek-box">
-          <b>💰 Transfer ke Rekening:</b>
-          <div><span>Bank</span><b>MANDIRI</b></div>
-          <div><span>No Rekening</span><b>1560-0236-3213-8</b></div>
-          <div><span>Atas Nama</span><b>Novananda Nadia</b></div>
-        </div>
-        <div class="card">
-          <h2>Pilih Tagihan</h2>
-          <div id="warga-bills-list"><div class="loading">Loading...</div></div>
-          <div style="background:#0F8A5F;color:white;padding:14px;border-radius:10px;margin-top:12px;display:flex;justify-content:space-between;align-items:center">
-            <div><small style="opacity:0.9">Total Bayar</small><br><b style="font-size:22px" id="warga-total">Rp 0</b></div>
-            <span class="b b-w" id="warga-count">0 bulan</span>
-          </div>
-        </div>
-        <div class="card">
-          <h2>📤 Upload Bukti Transfer</h2>
-          <div class="fg"><label>Foto/Screenshot Bukti Transfer</label><input type="file" id="warga-proof" accept="image/*"></div>
-          <button class="btn btn-primary" onclick="submitPayment()" id="btn-submit-pay" style="width:100%;justify-content:center;padding:11px">💳 Kirim Pembayaran</button>
-        </div>
-      </section>
-
-      <section id="wtab-history" class="hidden">
-        <h3 class="section-title"><span>📜 Riwayat Pembayaran</span></h3>
-        <div class="g g2" style="margin-bottom:14px">
-          <div class="stat"><h4>Total Lunas</h4><div class="v" id="w-tot-lunas" style="font-size:16px">Rp 0</div></div>
-          <div class="stat d"><h4>Total Tunggakan</h4><div class="v" id="w-tot-tunggakan" style="font-size:16px">Rp 0</div></div>
-        </div>
-        <div class="tbl-wrap"><table><thead><tr><th>Periode</th><th>Nominal</th><th>Status</th></tr></thead><tbody id="warga-history-tbl"><tr><td colspan="3" class="loading">Loading...</td></tr></tbody></table></div>
-      </section>
-
-      <section id="wtab-profile" class="hidden">
-        <h3 class="section-title"><span>👤 Profil Saya</span></h3>
-        <div class="card">
-          <div class="fg"><label>Nama Lengkap</label><input type="text" id="wp-name"></div>
-          <div class="fg"><label>Email</label><input type="email" id="wp-email" disabled></div>
-          <div class="fg"><label>No HP</label><input type="tel" id="wp-phone"></div>
-          <div class="g g2">
-            <div class="fg"><label>Blok</label><input type="text" id="wp-blok" disabled></div>
-            <div class="fg"><label>No Rumah</label><input type="text" id="wp-noRumah" disabled></div>
-          </div>
-          <div class="fg"><label>Status Rumah</label><input type="text" id="wp-hs" disabled></div>
-          <button class="btn btn-primary" onclick="saveWargaProfile()">💾 Simpan Perubahan</button>
-          <p style="font-size:11px;color:#5A7268;margin-top:10px">*Blok, No Rumah, & Status Rumah hanya bisa diubah oleh admin</p>
-        </div>
-        <div class="card">
-          <h2>🔒 Ganti Password</h2>
-          <div class="fg"><label>Password Baru (min 6 karakter)</label><input type="password" id="wp-newpass" minlength="6"></div>
-          <div class="fg"><label>Konfirmasi Password Baru</label><input type="password" id="wp-newpass2" minlength="6"></div>
-          <button class="btn btn-warning" onclick="changeWargaPassword()">🔒 Ganti Password</button>
-        </div>
-      </section>
-
-      <section id="wtab-docs" class="hidden">
-        <h3 class="section-title"><span>📄 Dokumen Pengurus</span></h3>
-        <div id="warga-docs-list"><div class="loading">Loading...</div></div>
-      </section>
-    </main>
-  </div>
-</div>
+<div id="page-warga" class="hidden"><div class="topbar"><h1>🏠 IPL Kartika Warga</h1><div class="u"><span id="warga-user-name">-</span><span class="b b-s">WARGA</span><button onclick="doLogout()">Logout</button></div></div>
+<div class="layout"><nav class="sidebar">
+<a data-wtab="home" class="active">🏠 Beranda</a><a data-wtab="bayar">💳 Bayar IPL</a><a data-wtab="history">📜 Riwayat</a><a data-wtab="profile">👤 Profil</a><a data-wtab="wfinance">💰 Laporan Kas</a><a data-wtab="docs">📄 Dokumen</a></nav>
+<main class="content">
+<section id="wtab-home"><h3 class="section-title"><span>🏠 Selamat Datang, <span id="warga-hello">-</span></span></h3><div id="warga-hero"><div class="loading">Loading...</div></div><div class="card"><h2>📋 Info Rumah</h2><div id="warga-info"></div></div></section>
+<section id="wtab-bayar" class="hidden"><h3 class="section-title"><span>💳 Bayar IPL</span></h3>
+<div class="rek"><b>💰 Transfer ke:</b><div><span>Bank</span><b>MANDIRI</b></div><div><span>No Rek</span><b>1560-0236-3213-8</b></div><div><span>a.n</span><b>Novananda Nadia</b></div></div>
+<div class="card"><h2>Pilih Tagihan</h2><div id="warga-bills-list"><div class="loading">Loading...</div></div>
+<div style="background:#0F8A5F;color:white;padding:14px;border-radius:10px;margin-top:12px;display:flex;justify-content:space-between;align-items:center"><div><small>Total Bayar</small><br><b style="font-size:22px" id="warga-total">Rp 0</b></div><span class="b b-w" id="warga-count">0 bulan</span></div></div>
+<div class="card"><h2>📤 Upload Bukti</h2><div class="fg"><label>Foto Bukti Transfer</label><input type="file" id="warga-proof" accept="image/*"></div><button class="btn btn-primary" onclick="submitPayment()" id="btn-submit-pay" style="width:100%;justify-content:center;padding:11px">💳 Kirim Pembayaran</button></div></section>
+<section id="wtab-history" class="hidden"><h3 class="section-title"><span>📜 Riwayat</span></h3>
+<div class="g g2" style="margin-bottom:14px"><div class="stat"><h4>Total Lunas</h4><div class="v" id="w-tot-lunas" style="font-size:16px">Rp 0</div></div><div class="stat d"><h4>Tunggakan</h4><div class="v" id="w-tot-tunggakan" style="font-size:16px">Rp 0</div></div></div>
+<div class="tbl-wrap"><table><thead><tr><th>Periode</th><th>Nominal</th><th>Status</th></tr></thead><tbody id="warga-history-tbl"><tr><td colspan="3" class="loading">Loading...</td></tr></tbody></table></div></section>
+<section id="wtab-profile" class="hidden"><h3 class="section-title"><span>👤 Profil</span></h3>
+<div class="card"><div class="fg"><label>Nama</label><input type="text" id="wp-name"></div><div class="fg"><label>Email</label><input type="email" id="wp-email" disabled></div><div class="fg"><label>No HP</label><input type="tel" id="wp-phone"></div>
+<div class="g g2"><div class="fg"><label>Blok</label><input type="text" id="wp-blok" disabled></div><div class="fg"><label>No Rumah</label><input type="text" id="wp-noRumah" disabled></div></div>
+<div class="fg"><label>Status</label><input type="text" id="wp-hs" disabled></div><button class="btn btn-primary" onclick="saveWargaProfile()">💾 Simpan</button></div>
+<div class="card"><h2>🔒 Ganti Password</h2><div class="fg"><label>Password Baru</label><input type="password" id="wp-newpass" minlength="6"></div><div class="fg"><label>Konfirmasi</label><input type="password" id="wp-newpass2" minlength="6"></div><button class="btn btn-warning" onclick="changeWargaPassword()">🔒 Ganti Password</button></div></section>
+<section id="wtab-wfinance" class="hidden"><h3 class="section-title"><span>💰 Laporan Kas</span></h3>
+<div class="filter"><select id="wf-bulan"><option value="0" selected>🔄 Semua Bulan</option></select><select id="wf-tahun"><option value="0" selected>🔄 Semua Tahun</option></select></div>
+<div class="g g3" id="wf-stats"><div class="loading">Loading...</div></div>
+<div class="card" style="margin-top:14px"><h2>📥 Pemasukan</h2><div id="wf-masuk"></div></div><div class="card"><h2>📤 Pengeluaran</h2><div id="wf-keluar"></div></div></section>
+<section id="wtab-docs" class="hidden"><h3 class="section-title"><span>📄 Dokumen</span></h3><div id="warga-docs-list"><div class="loading">Loading...</div></div></section>
+</main></div></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script>
-const SUPABASE_URL = 'https://mcqvgytlepvarhxlxcvc.supabase.co';
-const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1jcXZneXRsZXB2YXJoeGx4Y3ZjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAyMTE2NzcsImV4cCI6MjA5NTc4NzY3N30.BX8B5yxaMoFg7pk7Bc1-WCrqffqy0kabJeALvx0p1i8';
-const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const SUPABASE_URL='https://mcqvgytlepvarhxlxcvc.supabase.co';
+const SUPABASE_ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1jcXZneXRsZXB2YXJoeGx4Y3ZjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAyMTE2NzcsImV4cCI6MjA5NTc4NzY3N30.BX8B5yxaMoFg7pk7Bc1-WCrqffqy0kabJeALvx0p1i8';
+const sb=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
+let currentUser=null;
+const BULAN=['','Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+const BULAN_SHORT=['','Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
+let _cache={warga:[],bills:[],finance:[],docs:[],audit:[]};
+let _wargaBills=[],_wargaSelected=new Set();
+let _chartBar=null,_chartMasuk=null,_chartKeluar=null;
+const PIE_COLORS=['#0F8A5F','#EF6C00','#7B1FA2','#1976D2','#C62828','#00897B','#5E35B1','#D84315','#6A1B9A','#00838F'];
 
-let currentUser = null;
-const BULAN = ['','Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
-let _cache = {warga:[], bills:[], finance:[], docs:[], audit:[]};
-let _wargaBills = [];
-let _wargaSelected = new Set();
+const fmtRp=n=>(n==null||isNaN(n))?'0':parseInt(n).toLocaleString('id-ID');
+const fmtDate=s=>{if(!s)return'-';const d=new Date(s);return `${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()}`;};
+const fmtDT=s=>{if(!s)return'-';const d=new Date(s);return `${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;};
+const fmtWaktu=s=>{if(!s)return'-';const d=new Date(s),n=new Date(),df=(n-d)/1000;if(df<60)return'Baru saja';if(df<3600)return Math.floor(df/60)+' menit lalu';if(df<86400)return Math.floor(df/3600)+' jam lalu';if(df<604800)return Math.floor(df/86400)+' hari lalu';return fmtDT(s);};
+function toast(m,t='success'){const e=document.createElement('div');e.className='toast'+(t==='error'?' err':'');e.textContent=m;document.body.appendChild(e);setTimeout(()=>e.remove(),3000);}
+function confirmBox(t,m){return new Promise(r=>{const o=document.createElement('div');o.className='overlay';o.innerHTML=`<div class="modal"><h3>${t}</h3><p>${m}</p><div class="modal-act"><button class="btn btn-secondary" id="cx">Batal</button><button class="btn btn-danger" id="ok">Ya</button></div></div>`;document.body.appendChild(o);o.querySelector('#cx').onclick=()=>{o.remove();r(false);};o.querySelector('#ok').onclick=()=>{o.remove();r(true);};});}
+function showModal(h){const o=document.createElement('div');o.className='overlay';o.innerHTML=`<div class="modal">${h}</div>`;document.body.appendChild(o);return o;}
+function exportExcel(d,fn,sn='Sheet1'){if(!d||!d.length){toast('Tidak ada data','error');return;}const ws=XLSX.utils.json_to_sheet(d);const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,sn);const n=new Date();XLSX.writeFile(wb,`${fn}_${n.getFullYear()}${String(n.getMonth()+1).padStart(2,'0')}${String(n.getDate()).padStart(2,'0')}.xlsx`);toast('📥 Excel didownload!');}
+async function auditLog(m,a,d=''){try{if(!currentUser)return;if(currentUser.role!=='admin'&&currentUser.role!=='superuser')return;await sb.from('audit_logs').insert({user_id:currentUser.id,user_name:currentUser.full_name,user_email:currentUser.email,role:currentUser.role,module:m,action:a,detail:d});}catch(e){console.error(e);}}
 
-const fmtRp = n => (n==null||isNaN(n))?'0':parseInt(n).toLocaleString('id-ID');
-const fmtDate = s => {if(!s)return'-';const d=new Date(s);return `${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()}`;};
-const fmtDateTime = s => {if(!s)return'-';const d=new Date(s);return `${d.getDate()}/${d.getMonth()+1}/${d.getFullYear()} ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;};
-const fmtWaktu = s => {if(!s)return'-';const d=new Date(s),n=new Date(),df=(n-d)/1000;if(df<60)return'Baru saja';if(df<3600)return Math.floor(df/60)+' menit lalu';if(df<86400)return Math.floor(df/3600)+' jam lalu';if(df<604800)return Math.floor(df/86400)+' hari lalu';return fmtDateTime(s);};
+function switchTab(t){document.getElementById('tab-login-btn').classList.toggle('active',t==='login');document.getElementById('tab-register-btn').classList.toggle('active',t==='register');document.getElementById('login-form').classList.toggle('hidden',t!=='login');document.getElementById('register-form').classList.toggle('hidden',t!=='register');}
 
-function toast(msg,type='success'){const el=document.createElement('div');el.className='toast'+(type==='error'?' err':'');el.textContent=msg;document.body.appendChild(el);setTimeout(()=>el.remove(),3000);}
-function confirmBox(title,msg){return new Promise(res=>{const o=document.createElement('div');o.className='overlay';o.innerHTML=`<div class="modal"><h3>${title}</h3><p>${msg}</p><div class="modal-act"><button class="btn btn-secondary" id="cx">Batal</button><button class="btn btn-danger" id="ok">Ya</button></div></div>`;document.body.appendChild(o);o.querySelector('#cx').onclick=()=>{o.remove();res(false);};o.querySelector('#ok').onclick=()=>{o.remove();res(true);};});}
-function showModal(html){const o=document.createElement('div');o.className='overlay';o.innerHTML=`<div class="modal">${html}</div>`;document.body.appendChild(o);return o;}
+document.getElementById('login-form').addEventListener('submit',async e=>{e.preventDefault();const btn=document.getElementById('btn-login');btn.disabled=true;btn.textContent='Loading...';const email=document.getElementById('li-email').value.trim();const pass=document.getElementById('li-pass').value;try{const {data,error}=await sb.auth.signInWithPassword({email,password:pass});if(error)throw error;const {data:u}=await sb.from('users').select('*').eq('auth_id',data.user.id).maybeSingle();if(!u){window._tempAuth=data.user;document.getElementById('page-login').classList.add('hidden');document.getElementById('page-setup').classList.remove('hidden');btn.disabled=false;btn.textContent='Login';return;}currentUser=u;if(u.role==='admin'||u.role==='superuser'){await auditLog('Auth','LOGIN','Login web');enterAdmin();}else enterWarga();}catch(err){toast(err.message||'Login gagal','error');btn.disabled=false;btn.textContent='Login';}});
 
-function exportExcel(data,fn,sn='Sheet1'){if(!data||!data.length){toast('Tidak ada data','error');return;}const ws=XLSX.utils.json_to_sheet(data);const wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,sn);const n=new Date();const ts=`${n.getFullYear()}${String(n.getMonth()+1).padStart(2,'0')}${String(n.getDate()).padStart(2,'0')}_${String(n.getHours()).padStart(2,'0')}${String(n.getMinutes()).padStart(2,'0')}`;XLSX.writeFile(wb,`${fn}_${ts}.xlsx`);toast('📥 Excel didownload!');}
+document.getElementById('register-form').addEventListener('submit',async e=>{e.preventDefault();const btn=document.getElementById('btn-register');const email=document.getElementById('rg-email').value.trim();const p1=document.getElementById('rg-pass').value;const p2=document.getElementById('rg-pass2').value;if(p1.length<6){toast('Password min 6','error');return;}if(p1!==p2){toast('Password tidak cocok','error');return;}btn.disabled=true;btn.textContent='Mendaftar...';try{const {data,error}=await sb.auth.signUp({email,password:p1});if(error)throw error;if(!data.user)throw new Error('Gagal');window._tempAuth=data.user;toast('✅ Akun dibuat!');document.getElementById('page-login').classList.add('hidden');document.getElementById('page-setup').classList.remove('hidden');document.getElementById('register-form').reset();btn.disabled=false;btn.textContent='Daftar Akun';}catch(err){let m=err.message;if(m.includes('already'))m='Email sudah terdaftar';toast(m,'error');btn.disabled=false;btn.textContent='Daftar Akun';}});
 
-async function auditLog(module,action,detail=''){try{if(!currentUser)return;if(currentUser.role!=='admin'&&currentUser.role!=='superuser')return;await sb.from('audit_logs').insert({user_id:currentUser.id,user_name:currentUser.full_name,user_email:currentUser.email,role:currentUser.role,module,action,detail});}catch(e){console.error(e);}}
+document.getElementById('setup-form').addEventListener('submit',async e=>{e.preventDefault();const btn=document.getElementById('btn-setup');const au=window._tempAuth;if(!au){toast('Session hilang','error');return;}const nama=document.getElementById('sp-name').value.trim();const phone=document.getElementById('sp-phone').value.trim();const blok=document.getElementById('sp-blok').value.trim().toUpperCase();const noR=document.getElementById('sp-noRumah').value.trim();const luas=parseFloat(document.getElementById('sp-luas').value)||0;const hs=document.getElementById('sp-hs').value;if(!nama||!blok||!noR){toast('Nama, Blok, No wajib!','error');return;}btn.disabled=true;btn.textContent='Menyimpan...';try{const {data:nu,error}=await sb.from('users').insert({auth_id:au.id,email:au.email,full_name:nama,phone,block:blok,house_number:noR,land_area:luas,house_status:hs,role:'warga'}).select().single();if(error)throw error;const {data:st}=await sb.from('ipl_settings').select().eq('house_status',hs).maybeSingle();const amt=st?parseInt(st.amount):130000;const now=new Date();const y=now.getFullYear();for(let m=1;m<=now.getMonth()+1;m++)await sb.from('bills').insert({user_id:nu.id,period_month:m,period_year:y,amount:amt,status:'belum_bayar'});currentUser=nu;toast('✅ Profil disimpan!');document.getElementById('page-setup').classList.add('hidden');document.getElementById('setup-form').reset();delete window._tempAuth;enterWarga();}catch(err){toast(err.message,'error');btn.disabled=false;btn.textContent='💾 Simpan';}});
 
-// ============ TAB SWITCH LOGIN/REGISTER ============
-function switchTab(tab){
-  document.getElementById('tab-login-btn').classList.toggle('active',tab==='login');
-  document.getElementById('tab-register-btn').classList.toggle('active',tab==='register');
-  document.getElementById('login-form').classList.toggle('hidden',tab!=='login');
-  document.getElementById('register-form').classList.toggle('hidden',tab!=='register');
-}
+async function checkSession(){const {data:{session}}=await sb.auth.getSession();if(!session)return false;const {data:u}=await sb.from('users').select('*').eq('auth_id',session.user.id).maybeSingle();if(!u){window._tempAuth=session.user;document.getElementById('page-login').classList.add('hidden');document.getElementById('page-setup').classList.remove('hidden');return true;}currentUser=u;if(u.role==='admin'||u.role==='superuser')enterAdmin();else enterWarga();return true;}
 
-// ============ LOGIN ============
-document.getElementById('login-form').addEventListener('submit',async e=>{
-  e.preventDefault();
-  const btn=document.getElementById('btn-login');
-  btn.disabled=true;btn.textContent='Loading...';
-  const email=document.getElementById('li-email').value.trim();
-  const pass=document.getElementById('li-pass').value;
-  try{
-    const {data,error}=await sb.auth.signInWithPassword({email,password:pass});
-    if(error)throw error;
-    const {data:u}=await sb.from('users').select('*').eq('auth_id',data.user.id).maybeSingle();
-    if(!u){
-      // First time login, need setup profile
-      window._tempAuthUser = data.user;
-      document.getElementById('page-login').classList.add('hidden');
-      document.getElementById('page-setup').classList.remove('hidden');
-      btn.disabled=false;btn.textContent='Login';
-      return;
-    }
-    currentUser=u;
-    if(u.role==='admin'||u.role==='superuser'){
-      await auditLog('Auth','LOGIN','Login web admin');
-      enterAdminApp();
-    }else{
-      enterWargaApp();
-    }
-  }catch(err){toast(err.message||'Login gagal','error');btn.disabled=false;btn.textContent='Login';}
-});
+async function doLogout(){const ok=await confirmBox('Logout?','Yakin keluar?');if(!ok)return;if(currentUser&&(currentUser.role==='admin'||currentUser.role==='superuser'))await auditLog('Auth','LOGOUT','Logout');await sb.auth.signOut();currentUser=null;document.getElementById('page-app').classList.add('hidden');document.getElementById('page-warga').classList.add('hidden');document.getElementById('page-setup').classList.add('hidden');document.getElementById('page-login').classList.remove('hidden');switchTab('login');}
 
-// ============ REGISTER ============
-document.getElementById('register-form').addEventListener('submit',async e=>{
-  e.preventDefault();
-  const btn=document.getElementById('btn-register');
-  const email=document.getElementById('rg-email').value.trim();
-  const p1=document.getElementById('rg-pass').value;
-  const p2=document.getElementById('rg-pass2').value;
-  if(p1.length<6){toast('Password minimal 6 karakter','error');return;}
-  if(p1!==p2){toast('Password tidak cocok','error');return;}
-  btn.disabled=true;btn.textContent='Mendaftar...';
-  try{
-    const {data,error}=await sb.auth.signUp({email,password:p1});
-    if(error)throw error;
-    if(!data.user){throw new Error('Gagal mendaftar');}
-    window._tempAuthUser = data.user;
-    toast('✅ Akun berhasil dibuat!');
-    // Langsung ke setup profile
-    document.getElementById('page-login').classList.add('hidden');
-    document.getElementById('page-setup').classList.remove('hidden');
-    document.getElementById('register-form').reset();
-    btn.disabled=false;btn.textContent='Daftar Akun';
-  }catch(err){
-    let msg=err.message||'Registrasi gagal';
-    if(msg.includes('already registered'))msg='Email sudah terdaftar. Silakan login.';
-    toast(msg,'error');btn.disabled=false;btn.textContent='Daftar Akun';
-  }
-});
+function enterAdmin(){document.getElementById('page-login').classList.add('hidden');document.getElementById('page-warga').classList.add('hidden');document.getElementById('page-app').classList.remove('hidden');document.getElementById('user-name').textContent=currentUser.full_name;document.getElementById('user-role').textContent=currentUser.role.toUpperCase();loadDashboard();initFilters();}
 
-// ============ SETUP PROFILE ============
-document.getElementById('setup-form').addEventListener('submit',async e=>{
-  e.preventDefault();
-  const btn=document.getElementById('btn-setup');
-  const authUser = window._tempAuthUser;
-  if(!authUser){toast('Session hilang, silakan login ulang','error');return;}
-  const nama=document.getElementById('sp-name').value.trim();
-  const phone=document.getElementById('sp-phone').value.trim();
-  const blok=document.getElementById('sp-blok').value.trim().toUpperCase();
-  const noRumah=document.getElementById('sp-noRumah').value.trim();
-  const luas=parseFloat(document.getElementById('sp-luas').value)||0;
-  const hs=document.getElementById('sp-hs').value;
-  if(!nama||!blok||!noRumah){toast('Nama, Blok, No Rumah wajib!','error');return;}
-  btn.disabled=true;btn.textContent='Menyimpan...';
-  try{
-    // Insert user
-    const {data:newU,error}=await sb.from('users').insert({
-      auth_id:authUser.id,email:authUser.email,full_name:nama,phone,block:blok,house_number:noRumah,land_area:luas,house_status:hs,role:'warga'
-    }).select().single();
-    if(error)throw error;
+function enterWarga(){document.getElementById('page-login').classList.add('hidden');document.getElementById('page-app').classList.add('hidden');document.getElementById('page-warga').classList.remove('hidden');document.getElementById('warga-user-name').textContent=currentUser.full_name;document.getElementById('warga-hello').textContent=currentUser.full_name;loadWargaHome();}
 
-    // Auto generate bills dari Januari sampai bulan ini
-    const {data:settings}=await sb.from('ipl_settings').select().eq('house_status',hs).maybeSingle();
-    const amount = settings?parseInt(settings.amount):130000;
-    const now=new Date();const y=now.getFullYear();
-    for(let m=1;m<=now.getMonth()+1;m++){
-      await sb.from('bills').insert({user_id:newU.id,period_month:m,period_year:y,amount,status:'belum_bayar'});
-    }
-    currentUser = newU;
-    toast('✅ Profil berhasil disimpan!');
-    document.getElementById('page-setup').classList.add('hidden');
-    document.getElementById('setup-form').reset();
-    delete window._tempAuthUser;
-    enterWargaApp();
-  }catch(err){toast(err.message||'Gagal simpan','error');btn.disabled=false;btn.textContent='💾 Simpan & Lanjutkan';}
-});
+document.querySelectorAll('#page-app .sidebar a').forEach(a=>{a.addEventListener('click',()=>{document.querySelectorAll('#page-app .sidebar a').forEach(x=>x.classList.remove('active'));a.classList.add('active');const t=a.dataset.tab;document.querySelectorAll('#page-app main section').forEach(s=>s.classList.add('hidden'));document.getElementById('tab-'+t).classList.remove('hidden');if(t==='dashboard')loadDashboard();if(t==='warga')loadWarga();if(t==='bills')loadBills();if(t==='finance')loadFinance();if(t==='settings')loadSettings();if(t==='documents')loadDocs();if(t==='audit')loadAudit();});});
 
-async function checkSession(){
-  const {data:{session}}=await sb.auth.getSession();
-  if(!session)return false;
-  const {data:u}=await sb.from('users').select('*').eq('auth_id',session.user.id).maybeSingle();
-  if(!u){
-    // Auth exists but no profile → force setup
-    window._tempAuthUser = session.user;
-    document.getElementById('page-login').classList.add('hidden');
-    document.getElementById('page-setup').classList.remove('hidden');
-    return true;
-  }
-  currentUser=u;
-  if(u.role==='admin'||u.role==='superuser')enterAdminApp();
-  else enterWargaApp();
-  return true;
-}
+document.querySelectorAll('#page-warga .sidebar a').forEach(a=>{a.addEventListener('click',()=>{document.querySelectorAll('#page-warga .sidebar a').forEach(x=>x.classList.remove('active'));a.classList.add('active');const t=a.dataset.wtab;document.querySelectorAll('#page-warga main section').forEach(s=>s.classList.add('hidden'));document.getElementById('wtab-'+t).classList.remove('hidden');if(t==='home')loadWargaHome();if(t==='bayar')loadWargaBayar();if(t==='history')loadWargaHistory();if(t==='profile')loadWargaProfile();if(t==='wfinance')loadWargaFinance();if(t==='docs')loadWargaDocs();});});
 
-async function doLogout(){
-  const ok=await confirmBox('Logout?','Yakin ingin keluar?');
-  if(!ok)return;
-  if(currentUser&&(currentUser.role==='admin'||currentUser.role==='superuser'))await auditLog('Auth','LOGOUT','Logout dari web');
-  await sb.auth.signOut();
-  currentUser=null;
-  document.getElementById('page-app').classList.add('hidden');
-  document.getElementById('page-warga').classList.add('hidden');
-  document.getElementById('page-setup').classList.add('hidden');
-  document.getElementById('page-login').classList.remove('hidden');
-  switchTab('login');
-}
+function initFilters(){const bB=document.getElementById('bills-bulan');const bF=document.getElementById('fin-bulan');if(bB.options.length<=1){for(let i=1;i<=12;i++){bB.innerHTML+=`<option value="${i}">${BULAN[i]}</option>`;bF.innerHTML+=`<option value="${i}">${BULAN[i]}</option>`;}}['warga-search','warga-role'].forEach(id=>document.getElementById(id).addEventListener('input',loadWarga));['bills-bulan','bills-status','bills-search'].forEach(id=>document.getElementById(id).addEventListener('input',loadBills));['fin-bulan','fin-tahun','fin-tipe'].forEach(id=>document.getElementById(id).addEventListener('change',loadFinance));['au-periode','au-modul','au-role','au-search'].forEach(id=>document.getElementById(id).addEventListener('input',loadAudit));document.getElementById('wf-bulan').addEventListener('change',loadWargaFinance);document.getElementById('wf-tahun').addEventListener('change',loadWargaFinance);}
 
-function enterAdminApp(){
-  document.getElementById('page-login').classList.add('hidden');
-  document.getElementById('page-warga').classList.add('hidden');
-  document.getElementById('page-app').classList.remove('hidden');
-  document.getElementById('user-name').textContent=currentUser.full_name;
-  document.getElementById('user-role').textContent=currentUser.role.toUpperCase();
-  loadDashboard();initAdminFilters();
-}
+async function loadWargaHome(){try{const {data:bills}=await sb.from('bills').select().eq('user_id',currentUser.id).order('period_year',{ascending:false}).order('period_month',{ascending:false});const unpaid=(bills||[]).filter(b=>b.status!=='lunas');const tot=unpaid.reduce((s,b)=>s+parseInt(b.amount||0),0);const h=document.getElementById('warga-hero');if(tot>0)h.innerHTML=`<div class="hero"><h3>Total Belum Bayar</h3><div class="amt">Rp ${fmtRp(tot)}</div><div class="sub">${unpaid.length} bulan • Segera lunasi</div></div>`;else h.innerHTML=`<div class="hero ok"><h3>✓ Lunas Semua</h3><div class="amt">Rp 0</div><div class="sub">Terima kasih 🙏</div></div>`;const hs=currentUser.house_status==='kontrak'?'Kontrak':currentUser.house_status==='kosong'?'Kosong':'Sendiri';document.getElementById('warga-info').innerHTML=`<div style="display:grid;gap:8px"><div><b>👤 Nama:</b> ${currentUser.full_name}</div><div><b>🏠 Blok/No:</b> ${currentUser.block||'-'}/${currentUser.house_number||'-'}</div><div><b>📏 Luas:</b> ${currentUser.land_area||0} m²</div><div><b>🏷️ Status:</b> ${hs}</div><div><b>📱 HP:</b> ${currentUser.phone||'-'}</div><div><b>📧 Email:</b> ${currentUser.email||'-'}</div></div>`;}catch(e){toast(e.message,'error');}}
 
-function enterWargaApp(){
-  document.getElementById('page-login').classList.add('hidden');
-  document.getElementById('page-app').classList.add('hidden');
-  document.getElementById('page-warga').classList.remove('hidden');
-  document.getElementById('warga-user-name').textContent=currentUser.full_name;
-  document.getElementById('warga-hello').textContent=currentUser.full_name;
-  loadWargaHome();
-}
+async function loadWargaBayar(){try{const {data}=await sb.from('bills').select().eq('user_id',currentUser.id).eq('status','belum_bayar').order('period_year').order('period_month');_wargaBills=data||[];_wargaSelected=new Set(_wargaBills.map(b=>b.id));renderWargaBills();}catch(e){toast(e.message,'error');}}
 
-// ============ ADMIN TAB SWITCH ============
-document.querySelectorAll('#page-app .sidebar a').forEach(a=>{
-  a.addEventListener('click',()=>{
-    document.querySelectorAll('#page-app .sidebar a').forEach(x=>x.classList.remove('active'));
-    a.classList.add('active');
-    const tab=a.dataset.tab;
-    document.querySelectorAll('#page-app main section').forEach(s=>s.classList.add('hidden'));
-    document.getElementById('tab-'+tab).classList.remove('hidden');
-    if(tab==='dashboard')loadDashboard();
-    if(tab==='warga')loadWarga();
-    if(tab==='bills')loadBills();
-    if(tab==='finance')loadFinance();
-    if(tab==='settings')loadSettings();
-    if(tab==='documents')loadDocs();
-    if(tab==='audit')loadAudit();
-  });
-});
+function renderWargaBills(){const l=document.getElementById('warga-bills-list');if(!_wargaBills.length){l.innerHTML='<p style="text-align:center;padding:20px;color:#0F8A5F"><b>✓ Semua lunas!</b></p>';document.getElementById('warga-total').textContent='Rp 0';document.getElementById('warga-count').textContent='0 bulan';return;}const now=new Date();l.innerHTML=_wargaBills.map(b=>{const s=_wargaSelected.has(b.id);const t=(b.period_year<now.getFullYear())||(b.period_year===now.getFullYear()&&b.period_month<now.getMonth()+1);return `<div class="bill-item ${s?'selected':''} ${t?'tunggakan':''}" onclick="toggleBill('${b.id}')"><input type="checkbox" ${s?'checked':''} onclick="event.stopPropagation();toggleBill('${b.id}')"><div class="info"><b>${BULAN[b.period_month]} ${b.period_year} ${t?'<span class="b b-d" style="margin-left:6px">TUNGGAKAN</span>':''}</b><small>Rp ${fmtRp(b.amount)}</small></div></div>`;}).join('');let tot=0;_wargaBills.forEach(b=>{if(_wargaSelected.has(b.id))tot+=parseInt(b.amount||0);});document.getElementById('warga-total').textContent='Rp '+fmtRp(tot);document.getElementById('warga-count').textContent=_wargaSelected.size+' bulan';}
 
-// ============ WARGA TAB SWITCH ============
-document.querySelectorAll('#page-warga .sidebar a').forEach(a=>{
-  a.addEventListener('click',()=>{
-    document.querySelectorAll('#page-warga .sidebar a').forEach(x=>x.classList.remove('active'));
-    a.classList.add('active');
-    const tab=a.dataset.wtab;
-    document.querySelectorAll('#page-warga main section').forEach(s=>s.classList.add('hidden'));
-    document.getElementById('wtab-'+tab).classList.remove('hidden');
-    if(tab==='home')loadWargaHome();
-    if(tab==='bayar')loadWargaBayar();
-    if(tab==='history')loadWargaHistory();
-    if(tab==='profile')loadWargaProfile();
-    if(tab==='docs')loadWargaDocs();
-  });
-});
+function toggleBill(id){if(_wargaSelected.has(id))_wargaSelected.delete(id);else _wargaSelected.add(id);renderWargaBills();}
 
-function initAdminFilters(){
-  const bBills=document.getElementById('bills-bulan');const bFin=document.getElementById('fin-bulan');
-  if(bBills.options.length<=1){for(let i=1;i<=12;i++){bBills.innerHTML+=`<option value="${i}">${BULAN[i]}</option>`;bFin.innerHTML+=`<option value="${i}" ${i===new Date().getMonth()+1?'selected':''}>${BULAN[i]}</option>`;}}
-  ['warga-search','warga-role'].forEach(id=>document.getElementById(id).addEventListener('input',loadWarga));
-  ['bills-bulan','bills-status','bills-search'].forEach(id=>document.getElementById(id).addEventListener('input',loadBills));
-  ['fin-bulan','fin-tipe'].forEach(id=>document.getElementById(id).addEventListener('change',loadFinance));
-  ['au-periode','au-modul','au-role','au-search'].forEach(id=>document.getElementById(id).addEventListener('input',loadAudit));
-}
+async function submitPayment(){if(!_wargaSelected.size){toast('Pilih tagihan dulu','error');return;}const f=document.getElementById('warga-proof').files[0];if(!f){toast('Upload bukti dulu','error');return;}const btn=document.getElementById('btn-submit-pay');btn.disabled=true;btn.textContent='Mengirim...';try{const fn=`${currentUser.auth_id||'user'}_${Date.now()}.${f.name.split('.').pop()}`;const {error:ue}=await sb.storage.from('payment-proofs').upload(fn,f,{upsert:true});if(ue)throw ue;const {data:pub}=sb.storage.from('payment-proofs').getPublicUrl(fn);for(const id of _wargaSelected)await sb.from('bills').update({status:'pending',payment_proof_url:pub.publicUrl}).eq('id',id);toast('✅ Bukti terkirim!');document.getElementById('warga-proof').value='';setTimeout(loadWargaHome,1000);loadWargaBayar();}catch(e){toast(e.message,'error');}finally{btn.disabled=false;btn.textContent='💳 Kirim Pembayaran';}}
 
-// ============ WARGA HOME ============
-async function loadWargaHome(){
-  try{
-    const {data:bills}=await sb.from('bills').select().eq('user_id',currentUser.id).order('period_year',{ascending:false}).order('period_month',{ascending:false});
-    const unpaid=(bills||[]).filter(b=>b.status!=='lunas');
-    const totUnpaid=unpaid.reduce((s,b)=>s+parseInt(b.amount||0),0);
-    const hero=document.getElementById('warga-hero');
-    if(totUnpaid>0){
-      hero.innerHTML=`<div class="hero-tagihan">
-        <h3>Total Tagihan Belum Bayar</h3>
-        <div class="amt">Rp ${fmtRp(totUnpaid)}</div>
-        <div class="sub">${unpaid.length} bulan • Segera lunasi</div>
-      </div>`;
-    }else{
-      hero.innerHTML=`<div class="hero-tagihan ok">
-        <h3>✓ Semua Tagihan Lunas</h3>
-        <div class="amt">Rp 0</div>
-        <div class="sub">Terima kasih sudah membayar tepat waktu 🙏</div>
-      </div>`;
-    }
-    const hs=currentUser.house_status==='kontrak'?'Kontrak':currentUser.house_status==='kosong'?'Kosong':'Sendiri';
-    document.getElementById('warga-info').innerHTML=`
-      <div style="display:grid;gap:8px">
-        <div><b>👤 Nama:</b> ${currentUser.full_name}</div>
-        <div><b>🏠 Blok/No:</b> ${currentUser.block||'-'}/${currentUser.house_number||'-'}</div>
-        <div><b>📏 Luas Tanah:</b> ${currentUser.land_area||0} m²</div>
-        <div><b>🏷️ Status:</b> ${hs}</div>
-        <div><b>📱 HP:</b> ${currentUser.phone||'-'}</div>
-        <div><b>📧 Email:</b> ${currentUser.email||'-'}</div>
-      </div>`;
-  }catch(e){toast(e.message,'error');}
-}
+async function loadWargaHistory(){const tbl=document.getElementById('warga-history-tbl');tbl.innerHTML='<tr><td colspan="3" class="loading">Loading...</td></tr>';try{const {data}=await sb.from('bills').select().eq('user_id',currentUser.id).order('period_year',{ascending:false}).order('period_month',{ascending:false});const l=data||[];let lu=0,tu=0;l.forEach(b=>{if(b.status==='lunas')lu+=parseInt(b.amount||0);else tu+=parseInt(b.amount||0);});document.getElementById('w-tot-lunas').textContent='Rp '+fmtRp(lu);document.getElementById('w-tot-tunggakan').textContent='Rp '+fmtRp(tu);if(!l.length){tbl.innerHTML='<tr><td colspan="3" class="loading">Belum ada</td></tr>';return;}tbl.innerHTML=l.map(b=>{const sc=b.status==='lunas'?'b-s':b.status==='pending'?'b-w':'b-d';const sl=b.status==='lunas'?'LUNAS':b.status==='pending'?'PENDING':'BELUM';return `<tr><td><b>${BULAN[b.period_month]} ${b.period_year}</b></td><td>Rp ${fmtRp(b.amount)}</td><td><span class="b ${sc}">${sl}</span></td></tr>`;}).join('');}catch(e){tbl.innerHTML='<tr><td colspan="3" style="color:red">Error</td></tr>';}}
 
-// ============ WARGA BAYAR ============
-async function loadWargaBayar(){
-  try{
-    const {data}=await sb.from('bills').select().eq('user_id',currentUser.id).eq('status','belum_bayar').order('period_year').order('period_month');
-    _wargaBills=data||[];
-    _wargaSelected=new Set(_wargaBills.map(b=>b.id));
-    renderWargaBills();
-  }catch(e){toast(e.message,'error');}
-}
+function loadWargaProfile(){document.getElementById('wp-name').value=currentUser.full_name||'';document.getElementById('wp-email').value=currentUser.email||'';document.getElementById('wp-phone').value=currentUser.phone||'';document.getElementById('wp-blok').value=currentUser.block||'';document.getElementById('wp-noRumah').value=currentUser.house_number||'';document.getElementById('wp-hs').value=currentUser.house_status==='kontrak'?'Kontrak':currentUser.house_status==='kosong'?'Kosong':'Rumah Sendiri';}
 
-function renderWargaBills(){
-  const list=document.getElementById('warga-bills-list');
-  if(!_wargaBills.length){list.innerHTML='<p style="text-align:center;padding:20px;color:#0F8A5F"><b>✓ Semua tagihan sudah lunas!</b></p>';document.getElementById('warga-total').textContent='Rp 0';document.getElementById('warga-count').textContent='0 bulan';return;}
-  const now=new Date();
-  list.innerHTML=_wargaBills.map(b=>{
-    const sel=_wargaSelected.has(b.id);
-    const isTng=(b.period_year<now.getFullYear())||(b.period_year===now.getFullYear()&&b.period_month<now.getMonth()+1);
-    return `<div class="bill-item ${sel?'selected':''} ${isTng?'tunggakan':''}" onclick="toggleBill('${b.id}')">
-      <input type="checkbox" ${sel?'checked':''} onclick="event.stopPropagation();toggleBill('${b.id}')">
-      <div class="info"><b>${BULAN[b.period_month]} ${b.period_year} ${isTng?'<span class="b b-d" style="margin-left:6px">TUNGGAKAN</span>':''}</b><small>Rp ${fmtRp(b.amount)}</small></div>
-    </div>`;
-  }).join('');
-  updateWargaTotal();
-}
+async function saveWargaProfile(){try{const n=document.getElementById('wp-name').value.trim();const p=document.getElementById('wp-phone').value.trim();await sb.from('users').update({full_name:n,phone:p}).eq('id',currentUser.id);currentUser.full_name=n;currentUser.phone=p;document.getElementById('warga-user-name').textContent=n;document.getElementById('warga-hello').textContent=n;toast('✅ Diperbarui');}catch(e){toast(e.message,'error');}}
 
-function toggleBill(id){
-  if(_wargaSelected.has(id))_wargaSelected.delete(id);else _wargaSelected.add(id);
-  renderWargaBills();
-}
+async function changeWargaPassword(){const p1=document.getElementById('wp-newpass').value;const p2=document.getElementById('wp-newpass2').value;if(p1.length<6){toast('Min 6 karakter','error');return;}if(p1!==p2){toast('Tidak cocok','error');return;}try{const {error}=await sb.auth.updateUser({password:p1});if(error)throw error;document.getElementById('wp-newpass').value='';document.getElementById('wp-newpass2').value='';toast('✅ Password diubah');}catch(e){toast(e.message,'error');}}
 
-function updateWargaTotal(){
-  let tot=0;
-  _wargaBills.forEach(b=>{if(_wargaSelected.has(b.id))tot+=parseInt(b.amount||0);});
-  document.getElementById('warga-total').textContent='Rp '+fmtRp(tot);
-  document.getElementById('warga-count').textContent=_wargaSelected.size+' bulan';
-}
+async function loadWargaFinance(){const selB=document.getElementById('wf-bulan');const selY=document.getElementById('wf-tahun');if(selB.options.length<=1)for(let i=1;i<=12;i++)selB.innerHTML+=`<option value="${i}">${BULAN[i]}</option>`;try{const bl=parseInt(selB.value)||0;const y=parseInt(selY.value)||0;let q=sb.from('transactions').select('type,category,amount,period_year');if(bl!==0)q=q.eq('period_month',bl);if(y!==0)q=q.eq('period_year',y);const {data}=await q;const l=data||[];if(selY.options.length<=1){const ys=new Set();l.forEach(t=>{if(t.period_year)ys.add(t.period_year);});[...ys].sort((a,b)=>b-a).forEach(yr=>selY.innerHTML+=`<option value="${yr}">${yr}</option>`);}let m=0,k=0;const mM={},kM={};l.forEach(t=>{const a=parseInt(t.amount||0);if(t.type==='masuk'){m+=a;mM[t.category||'Lain']=(mM[t.category||'Lain']||0)+a;}else{k+=a;kM[t.category||'Lain']=(kM[t.category||'Lain']||0)+a;}});const s=m-k;document.getElementById('wf-stats').innerHTML=`<div class="stat"><h4>💰 Pemasukan</h4><div class="v" style="font-size:16px">Rp ${fmtRp(m)}</div></div><div class="stat d"><h4>💸 Pengeluaran</h4><div class="v" style="font-size:16px">Rp ${fmtRp(k)}</div></div><div class="stat ${s>=0?'':'d'}"><h4>💵 Saldo</h4><div class="v" style="font-size:16px">Rp ${fmtRp(s)}</div></div>`;const rd=map=>{const a=Object.entries(map).sort((x,y)=>y[1]-x[1]);if(!a.length)return '<p style="color:#5A7268;text-align:center;padding:14px">Tidak ada data</p>';return `<div class="tbl-wrap"><table><thead><tr><th>Kategori</th><th style="text-align:right">Total</th></tr></thead><tbody>${a.map(([k,v])=>`<tr><td>${k}</td><td style="text-align:right;font-weight:bold">Rp ${fmtRp(v)}</td></tr>`).join('')}</tbody></table></div>`;};document.getElementById('wf-masuk').innerHTML=rd(mM);document.getElementById('wf-keluar').innerHTML=rd(kM);}catch(e){document.getElementById('wf-stats').innerHTML='<p style="color:red">Error: '+e.message+'</p>';}}
 
-async function submitPayment(){
-  if(!_wargaSelected.size){toast('Pilih tagihan dulu','error');return;}
-  const file=document.getElementById('warga-proof').files[0];
-  if(!file){toast('Upload bukti transfer dulu','error');return;}
-  const btn=document.getElementById('btn-submit-pay');
-  btn.disabled=true;btn.textContent='Mengirim...';
-  try{
-    const fname=`${currentUser.auth_id||'user'}_${Date.now()}.${file.name.split('.').pop()}`;
-    const {error:upErr}=await sb.storage.from('payment-proofs').upload(fname,file,{upsert:true});
-    if(upErr)throw upErr;
-    const {data:pub}=sb.storage.from('payment-proofs').getPublicUrl(fname);
-    for(const id of _wargaSelected){
-      await sb.from('bills').update({status:'pending',payment_proof_url:pub.publicUrl}).eq('id',id);
-    }
-    toast('✅ Bukti transfer terkirim! Menunggu konfirmasi admin');
-    document.getElementById('warga-proof').value='';
-    setTimeout(()=>loadWargaHome(),1000);
-    loadWargaBayar();
-  }catch(e){toast(e.message,'error');btn.disabled=false;btn.textContent='💳 Kirim Pembayaran';}
-  finally{btn.disabled=false;btn.textContent='💳 Kirim Pembayaran';}
-}
+async function loadWargaDocs(){const l=document.getElementById('warga-docs-list');l.innerHTML='<div class="loading">Loading...</div>';try{const {data}=await sb.from('documents').select().order('created_at',{ascending:false});const a=data||[];if(!a.length){l.innerHTML='<div class="card"><p style="text-align:center;color:#5A7268">Belum ada dokumen</p></div>';return;}l.innerHTML=a.map(d=>`<div class="card" style="display:flex;justify-content:space-between;align-items:center;gap:10px"><div><b>📄 ${d.title||'-'}</b><br><small style="color:#5A7268">${d.file_name||''} • ${fmtDT(d.created_at)}</small></div><a href="${d.file_url}" target="_blank" class="btn btn-primary">👁️ Lihat</a></div>`).join('');}catch(e){l.innerHTML='<p style="color:red">Error</p>';}}
 
-// ============ WARGA HISTORY ============
-async function loadWargaHistory(){
-  const tbl=document.getElementById('warga-history-tbl');
-  tbl.innerHTML='<tr><td colspan="3" class="loading">Loading...</td></tr>';
-  try{
-    const {data}=await sb.from('bills').select().eq('user_id',currentUser.id).order('period_year',{ascending:false}).order('period_month',{ascending:false});
-    const list=data||[];
-    let lunas=0,tng=0;
-    list.forEach(b=>{if(b.status==='lunas')lunas+=parseInt(b.amount||0);else tng+=parseInt(b.amount||0);});
-    document.getElementById('w-tot-lunas').textContent='Rp '+fmtRp(lunas);
-    document.getElementById('w-tot-tunggakan').textContent='Rp '+fmtRp(tng);
-    if(!list.length){tbl.innerHTML='<tr><td colspan="3" class="loading">Belum ada data</td></tr>';return;}
-    tbl.innerHTML=list.map(b=>{
-      const sc=b.status==='lunas'?'b-s':b.status==='pending'?'b-w':'b-d';
-      const sl=b.status==='lunas'?'LUNAS':b.status==='pending'?'PENDING':'BELUM';
-      return `<tr><td><b>${BULAN[b.period_month]} ${b.period_year}</b></td><td>Rp ${fmtRp(b.amount)}</td><td><span class="b ${sc}">${sl}</span></td></tr>`;
-    }).join('');
-  }catch(e){tbl.innerHTML='<tr><td colspan="3" style="color:red">Error: '+e.message+'</td></tr>';}
-}
+async function loadDashboard(){const c=document.getElementById('stats-container');c.innerHTML='<div class="loading">Loading...</div>';try{const now=new Date();const m=now.getMonth()+1,y=now.getFullYear();const [w,l,b,p]=await Promise.all([sb.from('users').select('id',{count:'exact',head:true}).eq('role','warga'),sb.from('bills').select('amount').eq('period_month',m).eq('period_year',y).eq('status','lunas'),sb.from('bills').select('amount').eq('period_month',m).eq('period_year',y).eq('status','belum_bayar'),sb.from('bills').select('id',{count:'exact',head:true}).eq('status','pending')]);const nL=(l.data||[]).reduce((s,x)=>s+parseInt(x.amount||0),0);const nB=(b.data||[]).reduce((s,x)=>s+parseInt(x.amount||0),0);c.innerHTML=`<div class="stat"><h4>Total Warga</h4><div class="v">${w.count||0}</div></div><div class="stat"><h4>Lunas (${BULAN[m]})</h4><div class="v">${(l.data||[]).length}</div></div><div class="stat d"><h4>Belum Bayar</h4><div class="v">${(b.data||[]).length}</div></div><div class="stat w"><h4>Konfirmasi</h4><div class="v">${p.count||0}</div></div><div class="stat"><h4>Pemasukan</h4><div class="v" style="font-size:15px">Rp ${fmtRp(nL)}</div></div><div class="stat d"><h4>Tunggakan</h4><div class="v" style="font-size:15px">Rp ${fmtRp(nB)}</div></div>`;}catch(e){c.innerHTML='<p style="color:red">Error</p>';}}
 
-// ============ WARGA PROFILE ============
-function loadWargaProfile(){
-  document.getElementById('wp-name').value=currentUser.full_name||'';
-  document.getElementById('wp-email').value=currentUser.email||'';
-  document.getElementById('wp-phone').value=currentUser.phone||'';
-  document.getElementById('wp-blok').value=currentUser.block||'';
-  document.getElementById('wp-noRumah').value=currentUser.house_number||'';
-  const hs=currentUser.house_status==='kontrak'?'Kontrak':currentUser.house_status==='kosong'?'Rumah Kosong':'Rumah Sendiri';
-  document.getElementById('wp-hs').value=hs;
-}
+async function loadWarga(){const tbl=document.getElementById('warga-tbl').querySelector('tbody');tbl.innerHTML='<tr><td colspan="7" class="loading">Loading...</td></tr>';try{let q=sb.from('users').select().neq('role','superuser').order('block').order('house_number');const r=document.getElementById('warga-role').value;if(r!=='semua')q=q.eq('role',r);const {data}=await q;const s=(document.getElementById('warga-search').value||'').toLowerCase();let l=data||[];if(s)l=l.filter(w=>(w.full_name||'').toLowerCase().includes(s)||(w.block||'').toLowerCase().includes(s)||(w.house_number||'').toLowerCase().includes(s)||(w.email||'').toLowerCase().includes(s));_cache.warga=l;if(!l.length){tbl.innerHTML='<tr><td colspan="7" class="loading">Tidak ada</td></tr>';return;}tbl.innerHTML=l.map(w=>{const rc=w.role==='admin'?'b-w':'b-s';const hs=w.house_status==='kontrak'?'Kontrak':w.house_status==='kosong'?'Kosong':'Sendiri';return `<tr><td><b>${w.block||'-'}/${w.house_number||'-'}</b></td><td>${w.full_name||'-'}</td><td>${w.email||'-'}</td><td>${w.phone||'-'}</td><td>${hs}</td><td><span class="b ${rc}">${(w.role||'warga').toUpperCase()}</span></td><td><button class="btn btn-sm btn-secondary" onclick='editWarga(${JSON.stringify(w).replace(/'/g,"\\'")})'>✏️</button> <button class="btn btn-sm btn-danger" onclick="delWarga('${w.id}','${(w.full_name||'').replace(/'/g,"\\'")}')">🗑️</button></td></tr>`;}).join('');}catch(e){tbl.innerHTML='<tr><td colspan="7" style="color:red">Error</td></tr>';}}
 
-async function saveWargaProfile(){
-  try{
-    const nama=document.getElementById('wp-name').value.trim();
-    const phone=document.getElementById('wp-phone').value.trim();
-    await sb.from('users').update({full_name:nama,phone}).eq('id',currentUser.id);
-    currentUser.full_name=nama;currentUser.phone=phone;
-    document.getElementById('warga-user-name').textContent=nama;
-    document.getElementById('warga-hello').textContent=nama;
-    toast('✅ Profil diperbarui');
-  }catch(e){toast(e.message,'error');}
-}
-
-async function changeWargaPassword(){
-  const p1=document.getElementById('wp-newpass').value;
-  const p2=document.getElementById('wp-newpass2').value;
-  if(p1.length<6){toast('Password minimal 6 karakter','error');return;}
-  if(p1!==p2){toast('Password tidak cocok','error');return;}
-  try{
-    const {error}=await sb.auth.updateUser({password:p1});
-    if(error)throw error;
-    document.getElementById('wp-newpass').value='';document.getElementById('wp-newpass2').value='';
-    toast('✅ Password berhasil diubah');
-  }catch(e){toast(e.message,'error');}
-}
-
-// ============ WARGA DOCS ============
-async function loadWargaDocs(){
-  const list=document.getElementById('warga-docs-list');
-  list.innerHTML='<div class="loading">Loading...</div>';
-  try{
-    const {data}=await sb.from('documents').select().order('created_at',{ascending:false});
-    const arr=data||[];
-    if(!arr.length){list.innerHTML='<div class="card"><p style="text-align:center;color:#5A7268">Belum ada dokumen</p></div>';return;}
-    list.innerHTML=arr.map(d=>`<div class="card" style="display:flex;justify-content:space-between;align-items:center;gap:10px">
-      <div><b>📄 ${d.title||'-'}</b><br><small style="color:#5A7268">${d.file_name||''} • ${fmtDateTime(d.created_at)}</small></div>
-      <a href="${d.file_url}" target="_blank" class="btn btn-primary">👁️ Lihat</a>
-    </div>`).join('');
-  }catch(e){list.innerHTML='<p style="color:red">Error: '+e.message+'</p>';}
-}
-
-// ============ ADMIN: DASHBOARD ============
-async function loadDashboard(){
-  const c=document.getElementById('stats-container');
-  c.innerHTML='<div class="loading">Loading...</div>';
-  try{
-    const now=new Date();const m=now.getMonth()+1,y=now.getFullYear();
-    const [w,l,b,p]=await Promise.all([
-      sb.from('users').select('id',{count:'exact',head:true}).eq('role','warga'),
-      sb.from('bills').select('amount').eq('period_month',m).eq('period_year',y).eq('status','lunas'),
-      sb.from('bills').select('amount').eq('period_month',m).eq('period_year',y).eq('status','belum_bayar'),
-      sb.from('bills').select('id',{count:'exact',head:true}).eq('status','pending')
-    ]);
-    const nL=(l.data||[]).reduce((s,x)=>s+parseInt(x.amount||0),0);
-    const nB=(b.data||[]).reduce((s,x)=>s+parseInt(x.amount||0),0);
-    c.innerHTML=`
-      <div class="stat"><h4>Total Warga</h4><div class="v">${w.count||0}</div></div>
-      <div class="stat"><h4>Lunas (${BULAN[m]})</h4><div class="v">${(l.data||[]).length}</div></div>
-      <div class="stat d"><h4>Belum Bayar</h4><div class="v">${(b.data||[]).length}</div></div>
-      <div class="stat w"><h4>Menunggu Konfirmasi</h4><div class="v">${p.count||0}</div></div>
-      <div class="stat"><h4>Pemasukan Bulan Ini</h4><div class="v" style="font-size:15px">Rp ${fmtRp(nL)}</div></div>
-      <div class="stat d"><h4>Total Tunggakan</h4><div class="v" style="font-size:15px">Rp ${fmtRp(nB)}</div></div>`;
-  }catch(e){c.innerHTML='<p style="color:red">Error: '+e.message+'</p>';}
-}
-
-// ============ ADMIN: WARGA ============
-async function loadWarga(){
-  const tbl=document.getElementById('warga-tbl').querySelector('tbody');
-  tbl.innerHTML='<tr><td colspan="7" class="loading">Loading...</td></tr>';
-  try{
-    let q=sb.from('users').select().neq('role','superuser').order('block').order('house_number');
-    const role=document.getElementById('warga-role').value;
-    if(role!=='semua')q=q.eq('role',role);
-    const {data}=await q;
-    const s=(document.getElementById('warga-search').value||'').toLowerCase();
-    let list=data||[];
-    if(s)list=list.filter(w=>(w.full_name||'').toLowerCase().includes(s)||(w.block||'').toLowerCase().includes(s)||(w.house_number||'').toLowerCase().includes(s)||(w.email||'').toLowerCase().includes(s));
-    _cache.warga=list;
-    if(!list.length){tbl.innerHTML='<tr><td colspan="7" class="loading">Tidak ada data</td></tr>';return;}
-    tbl.innerHTML=list.map(w=>{
-      const rc=w.role==='admin'?'b-w':'b-s';
-      const hs=w.house_status==='kontrak'?'Kontrak':w.house_status==='kosong'?'Kosong':'Sendiri';
-      return `<tr><td><b>${w.block||'-'}/${w.house_number||'-'}</b></td><td>${w.full_name||'-'}</td><td>${w.email||'-'}</td><td>${w.phone||'-'}</td><td>${hs}</td><td><span class="b ${rc}">${(w.role||'warga').toUpperCase()}</span></td><td><button class="btn btn-sm btn-secondary" onclick='editWarga(${JSON.stringify(w).replace(/'/g,"\\'")})'>✏️</button> <button class="btn btn-sm btn-danger" onclick="delWarga('${w.id}','${(w.full_name||'').replace(/'/g,"\\'")}')">🗑️</button></td></tr>`;
-    }).join('');
-  }catch(e){tbl.innerHTML='<tr><td colspan="7" style="color:red">Error: '+e.message+'</td></tr>';}
-}
-
-function exportWargaExcel(){
-  const rows=_cache.warga.map(w=>({'Blok':w.block||'-','No Rumah':w.house_number||'-','Nama':w.full_name||'-','Email':w.email||'-','No HP':w.phone||'-','Luas (m²)':w.land_area||0,'Status Rumah':w.house_status==='kontrak'?'Kontrak':w.house_status==='kosong'?'Kosong':'Sendiri','Role':(w.role||'warga').toUpperCase()}));
-  exportExcel(rows,'Data_Warga','Warga');auditLog('Warga','EXPORT',`Excel warga (${rows.length} baris)`);
-}
+function exportWargaExcel(){const r=_cache.warga.map(w=>({Blok:w.block||'-','No':w.house_number||'-',Nama:w.full_name||'-',Email:w.email||'-',HP:w.phone||'-','Luas':w.land_area||0,Status:w.house_status,Role:(w.role||'warga').toUpperCase()}));exportExcel(r,'Data_Warga','Warga');auditLog('Warga','EXPORT',`Excel (${r.length})`);}
 
 function showWargaForm(){editWarga(null);}
-function editWarga(w){
-  const isEdit=!!w;
-  const o=showModal(`<h3>${isEdit?'Edit':'Tambah'} Warga</h3>
-    <div class="fg"><label>Nama Lengkap</label><input id="wf-name" value="${w?.full_name||''}"></div>
-    <div class="fg"><label>Email</label><input id="wf-email" type="email" value="${w?.email||''}"></div>
-    <div class="fg"><label>No HP</label><input id="wf-phone" value="${w?.phone||''}"></div>
-    <div class="g g2"><div class="fg"><label>Blok</label><input id="wf-blok" value="${w?.block||''}"></div><div class="fg"><label>No Rumah</label><input id="wf-noRumah" value="${w?.house_number||''}"></div></div>
-    <div class="fg"><label>Luas (m²)</label><input id="wf-luas" type="number" value="${w?.land_area||''}"></div>
-    <div class="fg"><label>Status Rumah</label><select id="wf-hs"><option value="milik_sendiri" ${w?.house_status==='milik_sendiri'?'selected':''}>Rumah Sendiri</option><option value="kontrak" ${w?.house_status==='kontrak'?'selected':''}>Kontrak</option><option value="kosong" ${w?.house_status==='kosong'?'selected':''}>Rumah Kosong</option></select></div>
-    <div class="modal-act"><button class="btn btn-secondary" onclick="this.closest('.overlay').remove()">Batal</button><button class="btn btn-primary" id="wf-save">💾 Simpan</button></div>`);
-  o.querySelector('#wf-save').onclick=async()=>{
-    const d={full_name:o.querySelector('#wf-name').value.trim(),email:o.querySelector('#wf-email').value.trim(),phone:o.querySelector('#wf-phone').value.trim(),block:o.querySelector('#wf-blok').value.trim().toUpperCase(),house_number:o.querySelector('#wf-noRumah').value.trim(),land_area:parseFloat(o.querySelector('#wf-luas').value)||0,house_status:o.querySelector('#wf-hs').value};
-    if(!d.full_name||!d.block||!d.house_number){toast('Nama, Blok, No Rumah wajib!','error');return;}
-    try{
-      if(isEdit){await sb.from('users').update(d).eq('id',w.id);await auditLog('Warga','UPDATE',`Edit ${d.full_name} (${d.block}/${d.house_number})`);}
-      else{d.role='warga';await sb.from('users').insert(d);await auditLog('Warga','CREATE',`Tambah ${d.full_name} (${d.block}/${d.house_number})`);}
-      o.remove();toast('Berhasil!');loadWarga();
-    }catch(e){toast(e.message,'error');}
-  };
-}
+function editWarga(w){const isE=!!w;const o=showModal(`<h3>${isE?'Edit':'Tambah'} Warga</h3><div class="fg"><label>Nama</label><input id="wf-name" value="${w?.full_name||''}"></div><div class="fg"><label>Email</label><input id="wf-email" type="email" value="${w?.email||''}"></div><div class="fg"><label>HP</label><input id="wf-phone" value="${w?.phone||''}"></div><div class="g g2"><div class="fg"><label>Blok</label><input id="wf-blok" value="${w?.block||''}"></div><div class="fg"><label>No</label><input id="wf-noR" value="${w?.house_number||''}"></div></div><div class="fg"><label>Luas</label><input id="wf-luas" type="number" value="${w?.land_area||''}"></div><div class="fg"><label>Status</label><select id="wf-hs"><option value="milik_sendiri" ${w?.house_status==='milik_sendiri'?'selected':''}>Sendiri</option><option value="kontrak" ${w?.house_status==='kontrak'?'selected':''}>Kontrak</option><option value="kosong" ${w?.house_status==='kosong'?'selected':''}>Kosong</option></select></div><div class="modal-act"><button class="btn btn-secondary" onclick="this.closest('.overlay').remove()">Batal</button><button class="btn btn-primary" id="wf-save">💾 Simpan</button></div>`);o.querySelector('#wf-save').onclick=async()=>{const d={full_name:o.querySelector('#wf-name').value.trim(),email:o.querySelector('#wf-email').value.trim(),phone:o.querySelector('#wf-phone').value.trim(),block:o.querySelector('#wf-blok').value.trim().toUpperCase(),house_number:o.querySelector('#wf-noR').value.trim(),land_area:parseFloat(o.querySelector('#wf-luas').value)||0,house_status:o.querySelector('#wf-hs').value};if(!d.full_name||!d.block||!d.house_number){toast('Wajib!','error');return;}try{if(isE){await sb.from('users').update(d).eq('id',w.id);await auditLog('Warga','UPDATE',`Edit ${d.full_name}`);}else{d.role='warga';await sb.from('users').insert(d);await auditLog('Warga','CREATE',`Tambah ${d.full_name}`);}o.remove();toast('OK');loadWarga();}catch(e){toast(e.message,'error');}};}
 
-async function delWarga(id,nama){
-  const ok=await confirmBox('Hapus User?',`Yakin hapus "${nama}"?`);
-  if(!ok)return;
-  try{
-    await sb.from('bills').delete().eq('user_id',id);
-    await sb.from('users').delete().eq('id',id);
-    await auditLog('Warga','DELETE',`Hapus ${nama}`);
-    toast('Berhasil');loadWarga();
-  }catch(e){toast(e.message,'error');}
-}
+async function delWarga(id,n){const ok=await confirmBox('Hapus?',`Hapus "${n}"?`);if(!ok)return;try{await sb.from('bills').delete().eq('user_id',id);await sb.from('users').delete().eq('id',id);await auditLog('Warga','DELETE',`Hapus ${n}`);toast('OK');loadWarga();}catch(e){toast(e.message,'error');}}
 
-// ============ ADMIN: BILLS ============
-async function loadBills(){
-  const tbl=document.getElementById('bills-tbl').querySelector('tbody');
-  tbl.innerHTML='<tr><td colspan="7" class="loading">Loading...</td></tr>';
-  try{
-    const y=new Date().getFullYear();
-    let q=sb.from('bills').select('*,users!bills_user_id_fkey(full_name,block,house_number)').eq('period_year',y);
-    const bl=document.getElementById('bills-bulan').value;const st=document.getElementById('bills-status').value;
-    if(bl!=='semua')q=q.eq('period_month',parseInt(bl));
-    if(st!=='semua')q=q.eq('status',st);
-    const {data}=await q.order('period_month',{ascending:false}).limit(500);
-    const s=(document.getElementById('bills-search').value||'').toLowerCase();
-    let list=data||[];
-    if(s)list=list.filter(b=>{const u=b.users||{};return (u.full_name||'').toLowerCase().includes(s)||(u.block||'').toLowerCase().includes(s)||(u.house_number||'').toLowerCase().includes(s);});
-    _cache.bills=list;
-    if(!list.length){tbl.innerHTML='<tr><td colspan="7" class="loading">Tidak ada data</td></tr>';return;}
-    tbl.innerHTML=list.map(b=>{
-      const u=b.users||{};const sc=b.status==='lunas'?'b-s':b.status==='pending'?'b-w':'b-d';const sl=b.status==='lunas'?'LUNAS':b.status==='pending'?'PENDING':'BELUM';
-      const proof=b.payment_proof_url?`<a href="${b.payment_proof_url}" target="_blank" class="btn btn-sm btn-secondary">👁️</a>`:'-';
-      let aksi='';
-      if(b.status==='pending')aksi=`<button class="btn btn-sm btn-primary" onclick="konfirmasi('${b.id}','lunas')">✓</button> <button class="btn btn-sm btn-danger" onclick="konfirmasi('${b.id}','belum_bayar')">✗</button>`;
-      else if(b.status==='belum_bayar')aksi=`<button class="btn btn-sm btn-primary" onclick="konfirmasi('${b.id}','lunas')">Lunas</button>`;
-      return `<tr><td>${u.full_name||'-'}</td><td>${u.block||'-'}/${u.house_number||'-'}</td><td>${BULAN[b.period_month]} ${b.period_year}</td><td>Rp ${fmtRp(b.amount)}</td><td><span class="b ${sc}">${sl}</span></td><td>${proof}</td><td>${aksi}</td></tr>`;
-    }).join('');
-  }catch(e){tbl.innerHTML='<tr><td colspan="7" style="color:red">Error: '+e.message+'</td></tr>';}
-}
+async function loadBills(){const tbl=document.getElementById('bills-tbl').querySelector('tbody');tbl.innerHTML='<tr><td colspan="7" class="loading">Loading...</td></tr>';try{const y=new Date().getFullYear();let q=sb.from('bills').select('*,users!bills_user_id_fkey(full_name,block,house_number)').eq('period_year',y);const bl=document.getElementById('bills-bulan').value;const st=document.getElementById('bills-status').value;if(bl!=='semua')q=q.eq('period_month',parseInt(bl));if(st!=='semua')q=q.eq('status',st);const {data}=await q.order('period_month',{ascending:false}).limit(500);const s=(document.getElementById('bills-search').value||'').toLowerCase();let l=data||[];if(s)l=l.filter(b=>{const u=b.users||{};return (u.full_name||'').toLowerCase().includes(s)||(u.block||'').toLowerCase().includes(s)||(u.house_number||'').toLowerCase().includes(s);});_cache.bills=l;if(!l.length){tbl.innerHTML='<tr><td colspan="7" class="loading">Tidak ada</td></tr>';return;}tbl.innerHTML=l.map(b=>{const u=b.users||{};const sc=b.status==='lunas'?'b-s':b.status==='pending'?'b-w':'b-d';const sl=b.status==='lunas'?'LUNAS':b.status==='pending'?'PENDING':'BELUM';const p=b.payment_proof_url?`<a href="${b.payment_proof_url}" target="_blank" class="btn btn-sm btn-secondary">👁️</a>`:'-';let a='';if(b.status==='pending')a=`<button class="btn btn-sm btn-primary" onclick="konfirmasi('${b.id}','lunas')">✓</button> <button class="btn btn-sm btn-danger" onclick="konfirmasi('${b.id}','belum_bayar')">✗</button>`;else if(b.status==='belum_bayar')a=`<button class="btn btn-sm btn-primary" onclick="konfirmasi('${b.id}','lunas')">Lunas</button>`;return `<tr><td>${u.full_name||'-'}</td><td>${u.block||'-'}/${u.house_number||'-'}</td><td>${BULAN[b.period_month]} ${b.period_year}</td><td>Rp ${fmtRp(b.amount)}</td><td><span class="b ${sc}">${sl}</span></td><td>${p}</td><td>${a}</td></tr>`;}).join('');}catch(e){tbl.innerHTML='<tr><td colspan="7" style="color:red">Error</td></tr>';}}
 
-function exportBillsExcel(){
-  const rows=_cache.bills.map(b=>{const u=b.users||{};return {'Nama':u.full_name||'-','Blok':u.block||'-','No':u.house_number||'-','Bulan':BULAN[b.period_month]||'-','Tahun':b.period_year,'Nominal':parseInt(b.amount||0),'Status':b.status==='lunas'?'LUNAS':b.status==='pending'?'PENDING':'BELUM','Bukti':b.payment_proof_url?'YA':'TIDAK','Konfirmasi':fmtDateTime(b.confirmed_at)};});
-  exportExcel(rows,'Data_Tagihan','Tagihan');auditLog('Tagihan','EXPORT',`Excel tagihan (${rows.length} baris)`);
-}
+function exportBillsExcel(){const r=_cache.bills.map(b=>{const u=b.users||{};return {Nama:u.full_name||'-',Blok:u.block||'-','No':u.house_number||'-',Bulan:BULAN[b.period_month]||'-',Tahun:b.period_year,Nominal:parseInt(b.amount||0),Status:b.status,Bukti:b.payment_proof_url?'YA':'TIDAK'};});exportExcel(r,'Data_Tagihan','Tagihan');auditLog('Tagihan','EXPORT',`Excel (${r.length})`);}
 
-async function konfirmasi(id,status){
-  try{
-    const upd={status};
-    if(status==='lunas'){upd.confirmed_by=currentUser.id;upd.confirmed_at=new Date().toISOString();}
-    const {data:bill}=await sb.from('bills').select('*,users!bills_user_id_fkey(full_name,block,house_number)').eq('id',id).maybeSingle();
-    await sb.from('bills').update(upd).eq('id',id);
-    const u=bill?.users||{};
+async function konfirmasi(id,st){try{const u={status:st};if(st==='lunas'){u.confirmed_by=currentUser.id;u.confirmed_at=new Date().toISOString();}const {data:bill}=await sb.from('bills').select('*,users!bills_user_id_fkey(full_name,block,house_number)').eq('id',id).maybeSingle();await sb.from('bills').update(u).eq('id',id);const us=bill?.users||{};if(st==='lunas'){const {data:ex}=await sb.from('transactions').select('id').eq('bill_id',id).maybeSingle();if(!ex){const t=new Date().toISOString().split('T')[0];await sb.from('transactions').insert({type:'masuk',category:'IPL',description:`IPL ${BULAN[bill.period_month]} ${bill.period_year} - ${us.full_name} (${us.block}/${us.house_number})`,amount:parseInt(bill.amount||0),period_month:bill.period_month,period_year:bill.period_year,transaction_date:t,created_by:currentUser.id,bill_id:id});}}else if(st==='belum_bayar'){await sb.from('transactions').delete().eq('bill_id',id);}await auditLog('Tagihan',st==='lunas'?'APPROVE':'REJECT',`${us.full_name} ${BULAN[bill.period_month]} ${st==='lunas'?'→ masuk kas':'→ kas revert'}`);toast(st==='lunas'?'✅ Masuk kas!':'❌ Kas direvert');loadBills();}catch(e){toast(e.message,'error');}}
 
-    // ===== LINK KE TRANSAKSI KEUANGAN =====
-    if(status==='lunas'){
-      // Cek apakah sudah ada transaksi untuk bill ini (jaga-jaga double)
-      const {data:exist}=await sb.from('transactions').select('id').eq('bill_id',id).maybeSingle();
-      if(!exist){
-        const today=new Date().toISOString().split('T')[0];
-        await sb.from('transactions').insert({
-          type:'masuk',
-          category:'IPL',
-          description:`IPL ${BULAN[bill.period_month]} ${bill.period_year} - ${u.full_name} (${u.block}/${u.house_number})`,
-          amount:parseInt(bill.amount||0),
-          period_month:bill.period_month,
-          period_year:bill.period_year,
-          transaction_date:today,
-          created_by:currentUser.id,
-          bill_id:id
-        });
-      }
-    }else if(status==='belum_bayar'){
-      // Jika ditolak, hapus transaksi yang sudah terlanjur masuk (kalau ada)
-      await sb.from('transactions').delete().eq('bill_id',id);
-    }
-    // ===== END LINK =====
+async function generateBills(){const now=new Date();const m=now.getMonth()+1,y=now.getFullYear();const ok=await confirmBox('Generate?',`Tagihan ${BULAN[m]} ${y} untuk semua warga?`);if(!ok)return;try{const {data:w}=await sb.from('users').select('id,house_status').eq('role','warga');const {data:st}=await sb.from('ipl_settings').select();const sm={};(st||[]).forEach(s=>sm[s.house_status]=parseInt(s.amount));let ins=0,sk=0;for(const ww of (w||[])){const a=sm[ww.house_status]||130000;const {data:ex}=await sb.from('bills').select('id').eq('user_id',ww.id).eq('period_month',m).eq('period_year',y).maybeSingle();if(!ex){await sb.from('bills').insert({user_id:ww.id,period_month:m,period_year:y,amount:a,status:'belum_bayar'});ins++;}else sk++;}await auditLog('Tagihan','GENERATE',`${BULAN[m]} ${y}: ${ins} baru, ${sk} skip`);toast(`✅ ${ins} baru, ${sk} skip`);loadBills();}catch(e){toast(e.message,'error');}}
 
-    await auditLog('Tagihan',status==='lunas'?'APPROVE':'REJECT',`${u.full_name} (${u.block}/${u.house_number}) ${BULAN[bill.period_month]} - Rp ${fmtRp(bill.amount)}`);
-    toast(status==='lunas'?'Dikonfirmasi & masuk kas!':'Ditolak & kas diupdate');
-    loadBills();
-  }catch(e){toast(e.message,'error');}
-}
-
-async function generateBills(){
-  const now=new Date();const m=now.getMonth()+1,y=now.getFullYear();
-  const ok=await confirmBox('Generate?',`Generate tagihan ${BULAN[m]} ${y} untuk semua warga?`);
-  if(!ok)return;
-  try{
-    const {data:warga}=await sb.from('users').select('id,house_status').eq('role','warga');
-    const {data:settings}=await sb.from('ipl_settings').select();
-    const smap={};(settings||[]).forEach(s=>smap[s.house_status]=parseInt(s.amount));
-    let ins=0,skip=0;
-    for(const w of (warga||[])){
-      const amount=smap[w.house_status]||130000;
-      const {data:ex}=await sb.from('bills').select('id').eq('user_id',w.id).eq('period_month',m).eq('period_year',y).maybeSingle();
-      if(!ex){await sb.from('bills').insert({user_id:w.id,period_month:m,period_year:y,amount,status:'belum_bayar'});ins++;}else skip++;
-    }
-    await auditLog('Tagihan','GENERATE',`${BULAN[m]} ${y}: ${ins} baru, ${skip} skip`);
-    toast(`Sukses! ${ins} baru, ${skip} skip`);loadBills();
-  }catch(e){toast(e.message,'error');}
-}
-
-// ============ ADMIN: FINANCE ============
 let _finCats=[];
-async function loadFinance(){
-  const tbl=document.getElementById('finance-tbl').querySelector('tbody');
-  tbl.innerHTML='<tr><td colspan="6" class="loading">Loading...</td></tr>';
-  try{
-    if(!_finCats.length){const {data}=await sb.from('transaction_categories').select();_finCats=data||[];}
-    const bl=parseInt(document.getElementById('fin-bulan').value)||new Date().getMonth()+1;
-    const y=new Date().getFullYear();const tp=document.getElementById('fin-tipe').value;
-    let q=sb.from('transactions').select().eq('period_month',bl).eq('period_year',y);
-    if(tp!=='semua')q=q.eq('type',tp);
-    const {data}=await q.order('transaction_date',{ascending:false});
-    const list=data||[];_cache.finance=list;
-    let msk=0,klr=0;list.forEach(t=>{if(t.type==='masuk')msk+=parseInt(t.amount||0);else klr+=parseInt(t.amount||0);});
-    document.getElementById('finance-stats').innerHTML=`<div class="stat"><h4>Pemasukan</h4><div class="v" style="font-size:16px">Rp ${fmtRp(msk)}</div></div><div class="stat d"><h4>Pengeluaran</h4><div class="v" style="font-size:16px">Rp ${fmtRp(klr)}</div></div><div class="stat ${msk-klr>=0?'':'d'}"><h4>Saldo</h4><div class="v" style="font-size:16px">Rp ${fmtRp(msk-klr)}</div></div>`;
-    if(!list.length){tbl.innerHTML='<tr><td colspan="6" class="loading">Belum ada transaksi</td></tr>';return;}
-    tbl.innerHTML=list.map(t=>{const isM=t.type==='masuk';return `<tr><td>${fmtDate(t.transaction_date)}</td><td><span class="b ${isM?'b-s':'b-d'}">${isM?'MASUK':'KELUAR'}</span></td><td>${t.category||'-'}</td><td>${t.description||'-'}</td><td style="color:${isM?'#0F8A5F':'#E53935'};font-weight:bold">${isM?'+':'-'} Rp ${fmtRp(t.amount)}</td><td><button class="btn btn-sm btn-danger" onclick="delFin('${t.id}','${(t.category||'').replace(/'/g,"\\'")}',${t.amount},'${t.type}')">🗑️</button></td></tr>`;}).join('');
-  }catch(e){tbl.innerHTML='<tr><td colspan="6" style="color:red">Error: '+e.message+'</td></tr>';}
-}
+async function loadFinance(){const tbl=document.getElementById('finance-tbl').querySelector('tbody');tbl.innerHTML='<tr><td colspan="6" class="loading">Loading...</td></tr>';try{if(!_finCats.length){const {data}=await sb.from('transaction_categories').select();_finCats=data||[];}const bl=parseInt(document.getElementById('fin-bulan').value)||0;const y=parseInt(document.getElementById('fin-tahun').value)||0;const tp=document.getElementById('fin-tipe').value;let q=sb.from('transactions').select();if(bl!==0)q=q.eq('period_month',bl);if(y!==0)q=q.eq('period_year',y);if(tp!=='semua')q=q.eq('type',tp);const {data}=await q.order('transaction_date',{ascending:false});const l=data||[];_cache.finance=l;const selY=document.getElementById('fin-tahun');if(selY.options.length<=1){const ys=new Set();const {data:ay}=await sb.from('transactions').select('period_year');(ay||[]).forEach(t=>{if(t.period_year)ys.add(t.period_year);});[...ys].sort((a,b)=>b-a).forEach(yr=>selY.innerHTML+=`<option value="${yr}">${yr}</option>`);}let m=0,k=0;const mM={},kM={};const mB={},kB={};l.forEach(t=>{const a=parseInt(t.amount||0);const mo=t.period_month;if(t.type==='masuk'){m+=a;mM[t.category||'Lain']=(mM[t.category||'Lain']||0)+a;mB[mo]=(mB[mo]||0)+a;}else{k+=a;kM[t.category||'Lain']=(kM[t.category||'Lain']||0)+a;kB[mo]=(kB[mo]||0)+a;}});document.getElementById('finance-stats').innerHTML=`<div class="stat"><h4>💰 Pemasukan</h4><div class="v" style="font-size:16px">Rp ${fmtRp(m)}</div></div><div class="stat d"><h4>💸 Pengeluaran</h4><div class="v" style="font-size:16px">Rp ${fmtRp(k)}</div></div><div class="stat ${m-k>=0?'':'d'}"><h4>💵 Saldo</h4><div class="v" style="font-size:16px">Rp ${fmtRp(m-k)}</div></div>`;renderCharts(mB,kB,mM,kM);if(!l.length){tbl.innerHTML='<tr><td colspan="6" class="loading">Belum ada</td></tr>';return;}tbl.innerHTML=l.map(t=>{const iM=t.type==='masuk';const iL=t.bill_id!=null;return `<tr><td>${fmtDate(t.transaction_date)}</td><td><span class="b ${iM?'b-s':'b-d'}">${iM?'MASUK':'KELUAR'}</span></td><td>${t.category||'-'} ${iL?'<span class="b b-link">🔗 TAGIHAN</span>':''}</td><td>${t.description||'-'}</td><td style="color:${iM?'#0F8A5F':'#E53935'};font-weight:bold">${iM?'+':'-'} Rp ${fmtRp(t.amount)}</td><td><button class="btn btn-sm btn-danger" onclick="delFin('${t.id}','${(t.category||'').replace(/'/g,"\\'")}',${t.amount},'${t.type}')">🗑️</button></td></tr>`;}).join('');}catch(e){tbl.innerHTML='<tr><td colspan="6" style="color:red">Error</td></tr>';}}
 
-function exportFinanceExcel(){
-  const rows=_cache.finance.map(t=>({'Tanggal':fmtDate(t.transaction_date),'Tipe':t.type==='masuk'?'PEMASUKAN':'PENGELUARAN','Kategori':t.category||'-','Deskripsi':t.description||'-','Nominal':parseInt(t.amount||0),'Bulan':BULAN[t.period_month]||'-','Tahun':t.period_year}));
-  const bl=parseInt(document.getElementById('fin-bulan').value)||new Date().getMonth()+1;const y=new Date().getFullYear();
-  exportExcel(rows,`Keuangan_${BULAN[bl]}_${y}`,'Keuangan');auditLog('Keuangan','EXPORT',`Excel ${BULAN[bl]} ${y}`);
-}
+function renderCharts(mB,kB,mM,kM){const labels=BULAN_SHORT.slice(1);const dM=[],dK=[];for(let i=1;i<=12;i++){dM.push(mB[i]||0);dK.push(kB[i]||0);}if(_chartBar)_chartBar.destroy();_chartBar=new Chart(document.getElementById('chart-bar'),{type:'bar',data:{labels,datasets:[{label:'Masuk',data:dM,backgroundColor:'#0F8A5F'},{label:'Keluar',data:dK,backgroundColor:'#E53935'}]},options:{responsive:true,plugins:{legend:{position:'top'}}}});const mE=Object.entries(mM).sort((a,b)=>b[1]-a[1]);if(_chartMasuk)_chartMasuk.destroy();if(mE.length)_chartMasuk=new Chart(document.getElementById('chart-masuk'),{type:'doughnut',data:{labels:mE.map(e=>e[0]),datasets:[{data:mE.map(e=>e[1]),backgroundColor:PIE_COLORS}]},options:{responsive:true,plugins:{legend:{position:'right',labels:{font:{size:10}}}}}});const kE=Object.entries(kM).sort((a,b)=>b[1]-a[1]);if(_chartKeluar)_chartKeluar.destroy();if(kE.length)_chartKeluar=new Chart(document.getElementById('chart-keluar'),{type:'doughnut',data:{labels:kE.map(e=>e[0]),datasets:[{data:kE.map(e=>e[1]),backgroundColor:PIE_COLORS}]},options:{responsive:true,plugins:{legend:{position:'right',labels:{font:{size:10}}}}}});}
 
-function showFinanceForm(){
-  const cats=_finCats;
-  const o=showModal(`<h3>Tambah Transaksi</h3><div class="fg"><label>Tipe</label><select id="ff-type"><option value="masuk">💰 Pemasukan</option><option value="keluar">💸 Pengeluaran</option></select></div><div class="fg"><label>Kategori</label><select id="ff-cat"></select></div><div class="fg"><label>Deskripsi</label><input id="ff-desc"></div><div class="fg"><label>Tanggal</label><input type="date" id="ff-date" value="${new Date().toISOString().split('T')[0]}"></div><div class="fg"><label>Nominal</label><input type="number" id="ff-amt"></div><div class="modal-act"><button class="btn btn-secondary" onclick="this.closest('.overlay').remove()">Batal</button><button class="btn btn-primary" id="ff-save">💾 Simpan</button></div>`);
-  const upd=()=>{const t=o.querySelector('#ff-type').value;const c=o.querySelector('#ff-cat');c.innerHTML=cats.filter(x=>x.type===t).map(x=>`<option>${x.name}</option>`).join('');};
-  o.querySelector('#ff-type').addEventListener('change',upd);upd();
-  o.querySelector('#ff-save').onclick=async()=>{
-    const t=o.querySelector('#ff-type').value;const cat=o.querySelector('#ff-cat').value;const desc=o.querySelector('#ff-desc').value.trim();const dt=o.querySelector('#ff-date').value;const amt=parseInt(o.querySelector('#ff-amt').value)||0;
-    if(!cat||!amt){toast('Kategori & Nominal wajib!','error');return;}
-    const d=new Date(dt);
-    try{
-      await sb.from('transactions').insert({type:t,category:cat,description:desc,amount:amt,period_month:d.getMonth()+1,period_year:d.getFullYear(),transaction_date:dt,created_by:currentUser.id});
-      await auditLog('Keuangan','CREATE',`${t==='masuk'?'PEMASUKAN':'PENGELUARAN'} - ${cat} Rp ${fmtRp(amt)}`);
-      o.remove();toast('Berhasil!');loadFinance();
-    }catch(e){toast(e.message,'error');}
-  };
-}
+function exportFinanceExcel(){const r=_cache.finance.map(t=>({Tanggal:fmtDate(t.transaction_date),Tipe:t.type,Kategori:t.category||'-',Deskripsi:t.description||'-',Nominal:parseInt(t.amount||0),Bulan:BULAN[t.period_month]||'-',Tahun:t.period_year,Linked:t.bill_id?'YA':'TIDAK'}));exportExcel(r,'Laporan_Keuangan','Keuangan');auditLog('Keuangan','EXPORT','Excel');}
 
-async function delFin(id,cat,amt,type){
-  const ok=await confirmBox('Hapus Transaksi?','Data akan dihapus permanen. Jika transaksi ini terkait pembayaran IPL warga, tagihannya akan otomatis dikembalikan ke status BELUM BAYAR.');
-  if(!ok)return;
-  try{
-    // Cek apakah transaksi ini linked ke bill
-    const {data:trx}=await sb.from('transactions').select('bill_id').eq('id',id).maybeSingle();
-    const linkedBillId = trx?.bill_id;
+function showFinanceForm(){const c=_finCats;const o=showModal(`<h3>Tambah Transaksi</h3><div class="fg"><label>Tipe</label><select id="ff-type"><option value="masuk">💰 Pemasukan</option><option value="keluar">💸 Pengeluaran</option></select></div><div class="fg"><label>Kategori</label><select id="ff-cat"></select></div><div class="fg"><label>Deskripsi</label><input id="ff-desc"></div><div class="fg"><label>Tanggal</label><input type="date" id="ff-date" value="${new Date().toISOString().split('T')[0]}"></div><div class="fg"><label>Nominal</label><input type="number" id="ff-amt"></div><div class="modal-act"><button class="btn btn-secondary" onclick="this.closest('.overlay').remove()">Batal</button><button class="btn btn-primary" id="ff-save">💾 Simpan</button></div>`);const u=()=>{const t=o.querySelector('#ff-type').value;const cc=o.querySelector('#ff-cat');cc.innerHTML=c.filter(x=>x.type===t).map(x=>`<option>${x.name}</option>`).join('');};o.querySelector('#ff-type').addEventListener('change',u);u();o.querySelector('#ff-save').onclick=async()=>{const t=o.querySelector('#ff-type').value;const ct=o.querySelector('#ff-cat').value;const de=o.querySelector('#ff-desc').value.trim();const dt=o.querySelector('#ff-date').value;const a=parseInt(o.querySelector('#ff-amt').value)||0;if(!ct||!a){toast('Wajib!','error');return;}const d=new Date(dt);try{await sb.from('transactions').insert({type:t,category:ct,description:de,amount:a,period_month:d.getMonth()+1,period_year:d.getFullYear(),transaction_date:dt,created_by:currentUser.id});await auditLog('Keuangan','CREATE',`${t} ${ct} Rp ${fmtRp(a)}`);o.remove();toast('OK');loadFinance();}catch(e){toast(e.message,'error');}};}
 
-    // Hapus transaksi
-    await sb.from('transactions').delete().eq('id',id);
+async function delFin(id,c,a,t){const {data:tr}=await sb.from('transactions').select('bill_id').eq('id',id).maybeSingle();const lb=tr?.bill_id;const msg=lb?'⚠️ Terkait pembayaran IPL. Tagihan akan direvert.':'Data akan dihapus';const ok=await confirmBox('Hapus?',msg);if(!ok)return;try{await sb.from('transactions').delete().eq('id',id);if(lb)await sb.from('bills').update({status:'belum_bayar',confirmed_by:null,confirmed_at:null}).eq('id',lb);await auditLog('Keuangan','DELETE',`Hapus ${t} ${c} Rp ${fmtRp(a)}${lb?' → tagihan direvert':''}`);toast(lb?'✅ Dihapus & tagihan direvert!':'OK');loadFinance();}catch(e){toast(e.message,'error');}}
 
-    // Jika ada bill terkait, revert bill jadi belum_bayar
-    if(linkedBillId){
-      await sb.from('bills').update({status:'belum_bayar',confirmed_by:null,confirmed_at:null}).eq('id',linkedBillId);
-      await auditLog('Keuangan','DELETE',`Hapus ${type==='masuk'?'PEMASUKAN':'PENGELUARAN'} - ${cat} Rp ${fmtRp(amt)} (tagihan warga direvert ke BELUM BAYAR)`);
-      toast('✅ Transaksi dihapus & tagihan warga direvert!');
-    }else{
-      await auditLog('Keuangan','DELETE',`Hapus ${type==='masuk'?'PEMASUKAN':'PENGELUARAN'} - ${cat} Rp ${fmtRp(amt)}`);
-      toast('Berhasil dihapus');
-    }
-    loadFinance();
-  }catch(e){toast(e.message,'error');}
-}
-``
-// ============ ADMIN: SETTINGS ============
-let _oldSettings={};
-async function loadSettings(){
-  try{
-    const {data}=await sb.from('ipl_settings').select();
-    (data||[]).forEach(d=>{const amt=parseInt(d.amount);_oldSettings[d.house_status]=amt;
-      if(d.house_status==='milik_sendiri')document.getElementById('set-milik').value=amt;
-      else if(d.house_status==='kontrak')document.getElementById('set-kontrak').value=amt;
-      else if(d.house_status==='kosong')document.getElementById('set-kosong').value=amt;
-    });
-  }catch(e){toast(e.message,'error');}
-}
+let _oldSet={};
+async function loadSettings(){try{const {data}=await sb.from('ipl_settings').select();(data||[]).forEach(d=>{const a=parseInt(d.amount);_oldSet[d.house_status]=a;if(d.house_status==='milik_sendiri')document.getElementById('set-milik').value=a;else if(d.house_status==='kontrak')document.getElementById('set-kontrak').value=a;else if(d.house_status==='kosong')document.getElementById('set-kosong').value=a;});}catch(e){toast(e.message,'error');}}
 
-async function saveSettings(){
-  try{
-    const nM=parseInt(document.getElementById('set-milik').value)||0;
-    const nK=parseInt(document.getElementById('set-kontrak').value)||0;
-    const nO=parseInt(document.getElementById('set-kosong').value)||0;
-    await sb.from('ipl_settings').update({amount:nM}).eq('house_status','milik_sendiri');
-    await sb.from('ipl_settings').update({amount:nK}).eq('house_status','kontrak');
-    await sb.from('ipl_settings').update({amount:nO}).eq('house_status','kosong');
-    const ch=[];
-    if(nM!==_oldSettings.milik_sendiri)ch.push(`Sendiri: ${fmtRp(_oldSettings.milik_sendiri)}→${fmtRp(nM)}`);
-    if(nK!==_oldSettings.kontrak)ch.push(`Kontrak: ${fmtRp(_oldSettings.kontrak)}→${fmtRp(nK)}`);
-    if(nO!==_oldSettings.kosong)ch.push(`Kosong: ${fmtRp(_oldSettings.kosong)}→${fmtRp(nO)}`);
-    await auditLog('Pengaturan','UPDATE_IPL',ch.length?ch.join(' • '):'Tanpa perubahan');
-    _oldSettings={milik_sendiri:nM,kontrak:nK,kosong:nO};
-    toast('Disimpan!');
-  }catch(e){toast(e.message,'error');}
-}
+async function saveSettings(){try{const nM=parseInt(document.getElementById('set-milik').value)||0;const nK=parseInt(document.getElementById('set-kontrak').value)||0;const nO=parseInt(document.getElementById('set-kosong').value)||0;await sb.from('ipl_settings').update({amount:nM}).eq('house_status','milik_sendiri');await sb.from('ipl_settings').update({amount:nK}).eq('house_status','kontrak');await sb.from('ipl_settings').update({amount:nO}).eq('house_status','kosong');const c=[];if(nM!==_oldSet.milik_sendiri)c.push(`Sendiri: ${fmtRp(_oldSet.milik_sendiri)}→${fmtRp(nM)}`);if(nK!==_oldSet.kontrak)c.push(`Kontrak: ${fmtRp(_oldSet.kontrak)}→${fmtRp(nK)}`);if(nO!==_oldSet.kosong)c.push(`Kosong: ${fmtRp(_oldSet.kosong)}→${fmtRp(nO)}`);await auditLog('Pengaturan','UPDATE_IPL',c.length?c.join(' • '):'Tanpa perubahan');_oldSet={milik_sendiri:nM,kontrak:nK,kosong:nO};toast('✅ Disimpan');}catch(e){toast(e.message,'error');}}
 
-// ============ ADMIN: DOCS ============
-async function loadDocs(){
-  const tbl=document.getElementById('doc-tbl').querySelector('tbody');
-  tbl.innerHTML='<tr><td colspan="4" class="loading">Loading...</td></tr>';
-  try{
-    const {data}=await sb.from('documents').select().order('created_at',{ascending:false});
-    const list=data||[];_cache.docs=list;
-    if(!list.length){tbl.innerHTML='<tr><td colspan="4" class="loading">Belum ada dokumen</td></tr>';return;}
-    tbl.innerHTML=list.map(d=>`<tr><td><b>${d.title||'-'}</b></td><td>${d.file_name||'-'}</td><td>${fmtDateTime(d.created_at)}</td><td><a href="${d.file_url}" target="_blank" class="btn btn-sm btn-secondary">👁️</a> <button class="btn btn-sm btn-danger" onclick="delDoc('${d.id}','${(d.title||'').replace(/'/g,"\\'")}','${(d.file_url||'').replace(/'/g,"\\'")}')">🗑️</button></td></tr>`).join('');
-  }catch(e){tbl.innerHTML='<tr><td colspan="4" style="color:red">Error: '+e.message+'</td></tr>';}
-}
+async function loadDocs(){const tbl=document.getElementById('doc-tbl').querySelector('tbody');tbl.innerHTML='<tr><td colspan="4" class="loading">Loading...</td></tr>';try{const {data}=await sb.from('documents').select().order('created_at',{ascending:false});const l=data||[];_cache.docs=l;if(!l.length){tbl.innerHTML='<tr><td colspan="4" class="loading">Belum ada</td></tr>';return;}tbl.innerHTML=l.map(d=>`<tr><td><b>${d.title||'-'}</b></td><td>${d.file_name||'-'}</td><td>${fmtDT(d.created_at)}</td><td><a href="${d.file_url}" target="_blank" class="btn btn-sm btn-secondary">👁️</a> <button class="btn btn-sm btn-danger" onclick="delDoc('${d.id}','${(d.title||'').replace(/'/g,"\\'")}','${(d.file_url||'').replace(/'/g,"\\'")}')">🗑️</button></td></tr>`).join('');}catch(e){tbl.innerHTML='<tr><td colspan="4" style="color:red">Error</td></tr>';}}
 
-function exportDocsExcel(){
-  const rows=_cache.docs.map(d=>({'Judul':d.title||'-','File':d.file_name||'-','URL':d.file_url||'-','Tanggal':fmtDateTime(d.created_at)}));
-  exportExcel(rows,'Data_Dokumen','Dokumen');auditLog('Dokumen','EXPORT',`Excel dokumen`);
-}
+async function uploadDoc(){const t=document.getElementById('doc-title').value.trim();const f=document.getElementById('doc-file').files[0];if(!t||!f){toast('Wajib!','error');return;}try{const fn=`${Date.now()}_${f.name}`;const {error:ue}=await sb.storage.from('documents').upload(fn,f,{upsert:true});if(ue)throw ue;const {data:p}=sb.storage.from('documents').getPublicUrl(fn);await sb.from('documents').insert({title:t,file_url:p.publicUrl,file_name:f.name,uploaded_by:currentUser.id});await auditLog('Dokumen','UPLOAD',`Upload "${t}"`);document.getElementById('doc-title').value='';document.getElementById('doc-file').value='';toast('✅ OK');loadDocs();}catch(e){toast(e.message,'error');}}
 
-async function uploadDoc(){
-  const title=document.getElementById('doc-title').value.trim();const file=document.getElementById('doc-file').files[0];
-  if(!title||!file){toast('Judul & file wajib!','error');return;}
-  try{
-    const fname=`${Date.now()}_${file.name}`;
-    const {error:upErr}=await sb.storage.from('documents').upload(fname,file,{upsert:true});
-    if(upErr)throw upErr;
-    const {data:pub}=sb.storage.from('documents').getPublicUrl(fname);
-    await sb.from('documents').insert({title,file_url:pub.publicUrl,file_name:file.name,uploaded_by:currentUser.id});
-    await auditLog('Dokumen','UPLOAD',`Upload "${title}" (${file.name})`);
-    document.getElementById('doc-title').value='';document.getElementById('doc-file').value='';
-    toast('Upload sukses!');loadDocs();
-  }catch(e){toast(e.message,'error');}
-}
+async function delDoc(id,t,u){const ok=await confirmBox('Hapus?',`Hapus "${t}"?`);if(!ok)return;try{if(u){try{const uu=new URL(u);const s=uu.pathname.split('/');const i=s.indexOf('documents');if(i>=0){const p=s.slice(i+1).join('/');await sb.storage.from('documents').remove([p]);}}catch(_){}}await sb.from('documents').delete().eq('id',id);await auditLog('Dokumen','DELETE',`Hapus "${t}"`);toast('OK');loadDocs();}catch(e){toast(e.message,'error');}}
 
-async function delDoc(id,title,url){
-  const ok=await confirmBox('Hapus?',`Yakin hapus "${title}"?`);if(!ok)return;
-  try{
-    if(url){try{const u=new URL(url);const seg=u.pathname.split('/');const i=seg.indexOf('documents');if(i>=0){const path=seg.slice(i+1).join('/');await sb.storage.from('documents').remove([path]);}}catch(_){}}
-    await sb.from('documents').delete().eq('id',id);
-    await auditLog('Dokumen','DELETE',`Hapus "${title}"`);
-    toast('Berhasil');loadDocs();
-  }catch(e){toast(e.message,'error');}
-}
+async function loadAudit(){const tbl=document.getElementById('audit-tbl').querySelector('tbody');tbl.innerHTML='<tr><td colspan="6" class="loading">Loading...</td></tr>';try{const p=document.getElementById('au-periode').value;const now=new Date();let f=null;if(p==='hari_ini')f=new Date(now.getFullYear(),now.getMonth(),now.getDate());else if(p==='7hari')f=new Date(now.getTime()-7*86400000);else if(p==='bulan_ini')f=new Date(now.getFullYear(),now.getMonth(),1);let q=sb.from('audit_logs').select();if(f)q=q.gte('created_at',f.toISOString());const {data}=await q.order('created_at',{ascending:false}).limit(500);let l=data||[];const md=document.getElementById('au-modul').value;const rl=document.getElementById('au-role').value;const s=(document.getElementById('au-search').value||'').toLowerCase();if(md!=='semua')l=l.filter(x=>x.module===md);if(rl!=='semua')l=l.filter(x=>x.role===rl);if(s)l=l.filter(x=>(x.user_name||'').toLowerCase().includes(s)||(x.action||'').toLowerCase().includes(s)||(x.detail||'').toLowerCase().includes(s));_cache.audit=l;if(!l.length){tbl.innerHTML='<tr><td colspan="6" class="loading">Belum ada</td></tr>';return;}tbl.innerHTML=l.map(x=>{const rc=x.role==='superuser'?'b-i':'b-w';return `<tr><td style="white-space:nowrap">${fmtWaktu(x.created_at)}</td><td>${x.user_name||'-'}</td><td><span class="b ${rc}">${(x.role||'').toUpperCase()}</span></td><td><span class="b b-g">${x.module||'-'}</span></td><td><b>${x.action||'-'}</b></td><td style="font-size:12px">${x.detail||'-'}</td></tr>`;}).join('');}catch(e){tbl.innerHTML='<tr><td colspan="6" style="color:red">Error</td></tr>';}}
 
-// ============ ADMIN: AUDIT ============
-async function loadAudit(){
-  const tbl=document.getElementById('audit-tbl').querySelector('tbody');
-  tbl.innerHTML='<tr><td colspan="6" class="loading">Loading...</td></tr>';
-  try{
-    const per=document.getElementById('au-periode').value;const now=new Date();let from=null;
-    if(per==='hari_ini')from=new Date(now.getFullYear(),now.getMonth(),now.getDate());
-    else if(per==='7hari')from=new Date(now.getTime()-7*86400000);
-    else if(per==='bulan_ini')from=new Date(now.getFullYear(),now.getMonth(),1);
-    let q=sb.from('audit_logs').select();
-    if(from)q=q.gte('created_at',from.toISOString());
-    const {data}=await q.order('created_at',{ascending:false}).limit(500);
-    let list=data||[];
-    const md=document.getElementById('au-modul').value;const rl=document.getElementById('au-role').value;const s=(document.getElementById('au-search').value||'').toLowerCase();
-    if(md!=='semua')list=list.filter(x=>x.module===md);
-    if(rl!=='semua')list=list.filter(x=>x.role===rl);
-    if(s)list=list.filter(x=>(x.user_name||'').toLowerCase().includes(s)||(x.action||'').toLowerCase().includes(s)||(x.detail||'').toLowerCase().includes(s));
-    _cache.audit=list;
-    if(!list.length){tbl.innerHTML='<tr><td colspan="6" class="loading">Belum ada aktivitas</td></tr>';return;}
-    tbl.innerHTML=list.map(l=>{const rc=l.role==='superuser'?'b-i':'b-w';return `<tr><td style="white-space:nowrap">${fmtWaktu(l.created_at)}</td><td>${l.user_name||'-'}</td><td><span class="b ${rc}">${(l.role||'').toUpperCase()}</span></td><td><span class="b b-g">${l.module||'-'}</span></td><td><b>${l.action||'-'}</b></td><td style="font-size:12px">${l.detail||'-'}</td></tr>`;}).join('');
-  }catch(e){tbl.innerHTML='<tr><td colspan="6" style="color:red">Error: '+e.message+'</td></tr>';}
-}
+function exportAuditExcel(){const r=_cache.audit.map(l=>({Waktu:fmtDT(l.created_at),Nama:l.user_name||'-',Email:l.user_email||'-',Role:l.role||'-',Modul:l.module||'-',Action:l.action||'-',Detail:l.detail||'-'}));exportExcel(r,'Log_Aktivitas','AuditLog');auditLog('Audit','EXPORT','Excel');}
 
-function exportAuditExcel(){
-  const rows=_cache.audit.map(l=>({'Waktu':fmtDateTime(l.created_at),'Nama':l.user_name||'-','Email':l.user_email||'-','Role':(l.role||'').toUpperCase(),'Modul':l.module||'-','Action':l.action||'-','Detail':l.detail||'-'}));
-  exportExcel(rows,'Log_Aktivitas','AuditLog');auditLog('Audit','EXPORT',`Excel log aktivitas`);
-}
-
-// ============ INIT ============
 (async()=>{await checkSession();})();
-</script>
-</body>
-</html>
+</script></body></html>
