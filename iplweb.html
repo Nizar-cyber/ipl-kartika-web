@@ -822,12 +822,39 @@ function exportBillsExcel(){
 
 async function konfirmasi(id,status){
   try{
-    const upd={status};if(status==='lunas'){upd.confirmed_by=currentUser.id;upd.confirmed_at=new Date().toISOString();}
+    const upd={status};
+    if(status==='lunas'){upd.confirmed_by=currentUser.id;upd.confirmed_at=new Date().toISOString();}
     const {data:bill}=await sb.from('bills').select('*,users!bills_user_id_fkey(full_name,block,house_number)').eq('id',id).maybeSingle();
     await sb.from('bills').update(upd).eq('id',id);
     const u=bill?.users||{};
+
+    // ===== LINK KE TRANSAKSI KEUANGAN =====
+    if(status==='lunas'){
+      // Cek apakah sudah ada transaksi untuk bill ini (jaga-jaga double)
+      const {data:exist}=await sb.from('transactions').select('id').eq('bill_id',id).maybeSingle();
+      if(!exist){
+        const today=new Date().toISOString().split('T')[0];
+        await sb.from('transactions').insert({
+          type:'masuk',
+          category:'IPL',
+          description:`IPL ${BULAN[bill.period_month]} ${bill.period_year} - ${u.full_name} (${u.block}/${u.house_number})`,
+          amount:parseInt(bill.amount||0),
+          period_month:bill.period_month,
+          period_year:bill.period_year,
+          transaction_date:today,
+          created_by:currentUser.id,
+          bill_id:id
+        });
+      }
+    }else if(status==='belum_bayar'){
+      // Jika ditolak, hapus transaksi yang sudah terlanjur masuk (kalau ada)
+      await sb.from('transactions').delete().eq('bill_id',id);
+    }
+    // ===== END LINK =====
+
     await auditLog('Tagihan',status==='lunas'?'APPROVE':'REJECT',`${u.full_name} (${u.block}/${u.house_number}) ${BULAN[bill.period_month]} - Rp ${fmtRp(bill.amount)}`);
-    toast(status==='lunas'?'Dikonfirmasi!':'Ditolak');loadBills();
+    toast(status==='lunas'?'Dikonfirmasi & masuk kas!':'Ditolak & kas diupdate');
+    loadBills();
   }catch(e){toast(e.message,'error');}
 }
 
@@ -894,11 +921,29 @@ function showFinanceForm(){
 }
 
 async function delFin(id,cat,amt,type){
-  const ok=await confirmBox('Hapus?','Data akan dihapus permanen');
+  const ok=await confirmBox('Hapus Transaksi?','Data akan dihapus permanen. Jika transaksi ini terkait pembayaran IPL warga, tagihannya akan otomatis dikembalikan ke status BELUM BAYAR.');
   if(!ok)return;
-  try{await sb.from('transactions').delete().eq('id',id);await auditLog('Keuangan','DELETE',`Hapus ${type==='masuk'?'PEMASUKAN':'PENGELUARAN'} - ${cat} Rp ${fmtRp(amt)}`);toast('Berhasil');loadFinance();}catch(e){toast(e.message,'error');}
-}
+  try{
+    // Cek apakah transaksi ini linked ke bill
+    const {data:trx}=await sb.from('transactions').select('bill_id').eq('id',id).maybeSingle();
+    const linkedBillId = trx?.bill_id;
 
+    // Hapus transaksi
+    await sb.from('transactions').delete().eq('id',id);
+
+    // Jika ada bill terkait, revert bill jadi belum_bayar
+    if(linkedBillId){
+      await sb.from('bills').update({status:'belum_bayar',confirmed_by:null,confirmed_at:null}).eq('id',linkedBillId);
+      await auditLog('Keuangan','DELETE',`Hapus ${type==='masuk'?'PEMASUKAN':'PENGELUARAN'} - ${cat} Rp ${fmtRp(amt)} (tagihan warga direvert ke BELUM BAYAR)`);
+      toast('✅ Transaksi dihapus & tagihan warga direvert!');
+    }else{
+      await auditLog('Keuangan','DELETE',`Hapus ${type==='masuk'?'PEMASUKAN':'PENGELUARAN'} - ${cat} Rp ${fmtRp(amt)}`);
+      toast('Berhasil dihapus');
+    }
+    loadFinance();
+  }catch(e){toast(e.message,'error');}
+}
+``
 // ============ ADMIN: SETTINGS ============
 let _oldSettings={};
 async function loadSettings(){
