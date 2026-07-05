@@ -50,15 +50,15 @@ h3.section-title{color:#0A6644;margin-bottom:12px;display:flex;justify-content:s
 <div id="page-login" class="login-wrap"><div class="login-box"><h1>🏠 IPL Kartika</h1><p class="sub">Kartika Residence — Cluster Kawaluyaan</p>
 <div class="tabs-login"><button id="tab-login-btn" class="active" onclick="switchTab('login')">Login</button><button id="tab-register-btn" onclick="switchTab('register')">Daftar Warga</button></div>
 <form id="login-form"><div class="fg"><label>Email</label><input type="email" id="li-email" required></div><div class="fg"><label>Password</label><input type="password" id="li-pass" required></div><button type="submit" class="btn btn-primary" id="btn-login" style="width:100%;justify-content:center;padding:11px">Login</button></form>
-<form id="register-form" class="hidden"><div class="fg"><label>Email</label><input type="email" id="rg-email" required></div><div class="fg"><label>Password (min 6)</label><input type="password" id="rg-pass" required minlength="6"></div><div class="fg"><label>Konfirmasi</label><input type="password" id="rg-pass2" required minlength="6"></div><button type="submit" class="btn btn-primary" id="btn-register" style="width:100%;justify-content:center;padding:11px">Daftar Akun</button></form>
+<form id="register-form" class="hidden"><div class="fg"><label>Email</label><input type="email" id="rg-email" required></div><div class="fg"><label>Password (min 6)</label><input type="password" id="rg-pass" required minlength="6"></div><div class="fg"><label>Konfirmasi</label><input type="password" id="rg-pass2" required minlength="6"></div><button type="submit" class="btn btn-primary" id="btn-register" style="width:100%;justify-content:center;padding:11px">Lanjutkan →</button><p style="text-align:center;margin-top:10px;color:#5A7268;font-size:11px">Akun dibuat setelah data profil lengkap</p></form>
 <p style="text-align:center;margin-top:16px;color:#5A7268;font-size:11px">© 2026 Kartika Residence</p></div></div>
 
-<div id="page-setup" class="login-wrap hidden"><div class="login-box" style="max-width:500px"><h1>📝 Lengkapi Data</h1><p class="sub">Data rumah Anda</p>
+<div id="page-setup" class="login-wrap hidden"><div class="login-box" style="max-width:500px"><h1>📝 Lengkapi Data</h1><p class="sub">Akun dibuat setelah data disimpan</p>
 <form id="setup-form"><div class="fg"><label>Nama Lengkap *</label><input type="text" id="sp-name" required></div><div class="fg"><label>No HP</label><input type="tel" id="sp-phone"></div>
 <div class="g g2"><div class="fg"><label>Blok *</label><input type="text" id="sp-blok" required style="text-transform:uppercase"></div><div class="fg"><label>No Rumah *</label><input type="text" id="sp-noRumah" required></div></div>
 <div class="fg"><label>Luas Tanah (m²)</label><input type="number" id="sp-luas"></div>
 <div class="fg"><label>Status Rumah *</label><select id="sp-hs" required><option value="milik_sendiri">Rumah Sendiri</option><option value="kontrak">Kontrak</option><option value="kosong">Rumah Kosong</option></select></div>
-<button type="submit" class="btn btn-primary" id="btn-setup" style="width:100%;justify-content:center;padding:11px">💾 Simpan</button></form></div></div>
+<div style="display:flex;gap:8px"><button type="button" class="btn btn-secondary" onclick="cancelSetup()" style="flex:1;justify-content:center;padding:11px">✖ Batal</button><button type="submit" class="btn btn-primary" id="btn-setup" style="flex:2;justify-content:center;padding:11px">💾 Simpan & Buat Akun</button></div></form></div></div>
 
 <div id="page-app" class="hidden"><div class="topbar"><h1>🏠 IPL Kartika Admin</h1><div class="u"><span id="user-name">-</span><span class="b b-i" id="user-role">-</span><button onclick="doLogout()">Logout</button></div></div>
 <div class="layout"><nav class="sidebar">
@@ -114,8 +114,8 @@ h3.section-title{color:#0A6644;margin-bottom:12px;display:flex;justify-content:s
 </main></div></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+lsx.full.min.js"></script>
+.umd.min.js"></script>
 <script>
 const SUPABASE_URL='https://mcqvgytlepvarhxlxcvc.supabase.co';
 const SUPABASE_ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1jcXZneXRsZXB2YXJoeGx4Y3ZjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAyMTE2NzcsImV4cCI6MjA5NTc4NzY3N30.BX8B5yxaMoFg7pk7Bc1-WCrqffqy0kabJeALvx0p1i8';
@@ -142,9 +142,99 @@ function switchTab(t){document.getElementById('tab-login-btn').classList.toggle(
 
 document.getElementById('login-form').addEventListener('submit',async e=>{e.preventDefault();const btn=document.getElementById('btn-login');btn.disabled=true;btn.textContent='Loading...';const email=document.getElementById('li-email').value.trim();const pass=document.getElementById('li-pass').value;try{const {data,error}=await sb.auth.signInWithPassword({email,password:pass});if(error)throw error;const {data:u}=await sb.from('users').select('*').eq('auth_id',data.user.id).maybeSingle();if(!u){window._tempAuth=data.user;document.getElementById('page-login').classList.add('hidden');document.getElementById('page-setup').classList.remove('hidden');btn.disabled=false;btn.textContent='Login';return;}currentUser=u;if(u.role==='admin'||u.role==='superuser'){await auditLog('Auth','LOGIN','Login web');enterAdmin();}else enterWarga();}catch(err){toast(err.message||'Login gagal','error');btn.disabled=false;btn.textContent='Login';}});
 
-document.getElementById('register-form').addEventListener('submit',async e=>{e.preventDefault();const btn=document.getElementById('btn-register');const email=document.getElementById('rg-email').value.trim();const p1=document.getElementById('rg-pass').value;const p2=document.getElementById('rg-pass2').value;if(p1.length<6){toast('Password min 6','error');return;}if(p1!==p2){toast('Password tidak cocok','error');return;}btn.disabled=true;btn.textContent='Mendaftar...';try{const {data,error}=await sb.auth.signUp({email,password:p1});if(error)throw error;if(!data.user)throw new Error('Gagal');window._tempAuth=data.user;toast('✅ Akun dibuat!');document.getElementById('page-login').classList.add('hidden');document.getElementById('page-setup').classList.remove('hidden');document.getElementById('register-form').reset();btn.disabled=false;btn.textContent='Daftar Akun';}catch(err){let m=err.message;if(m.includes('already'))m='Email sudah terdaftar';toast(m,'error');btn.disabled=false;btn.textContent='Daftar Akun';}});
+// === REGISTER: hanya simpan sementara, BELUM bikin akun auth ===
+document.getElementById('register-form').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const btn=document.getElementById('btn-register');
+  const email=document.getElementById('rg-email').value.trim();
+  const p1=document.getElementById('rg-pass').value;
+  const p2=document.getElementById('rg-pass2').value;
+  if(p1.length<6){toast('Password min 6','error');return;}
+  if(p1!==p2){toast('Password tidak cocok','error');return;}
+  btn.disabled=true;btn.textContent='Cek email...';
+  try{
+    const {data:exist}=await sb.from('users').select('id').eq('email',email).maybeSingle();
+    if(exist)throw new Error('Email sudah terdaftar');
+    window._tempRegister={email,password:p1};
+    toast('📝 Silakan lengkapi data untuk selesaikan pendaftaran');
+    document.getElementById('page-login').classList.add('hidden');
+    document.getElementById('page-setup').classList.remove('hidden');
+    document.getElementById('register-form').reset();
+  }catch(err){
+    toast(err.message||'Gagal','error');
+  }finally{
+    btn.disabled=false;btn.textContent='Lanjutkan →';
+  }
+});
 
-document.getElementById('setup-form').addEventListener('submit',async e=>{e.preventDefault();const btn=document.getElementById('btn-setup');const au=window._tempAuth;if(!au){toast('Session hilang','error');return;}const nama=document.getElementById('sp-name').value.trim();const phone=document.getElementById('sp-phone').value.trim();const blok=document.getElementById('sp-blok').value.trim().toUpperCase();const noR=document.getElementById('sp-noRumah').value.trim();const luas=parseFloat(document.getElementById('sp-luas').value)||0;const hs=document.getElementById('sp-hs').value;if(!nama||!blok||!noR){toast('Nama, Blok, No wajib!','error');return;}btn.disabled=true;btn.textContent='Menyimpan...';try{const {data:nu,error}=await sb.from('users').insert({auth_id:au.id,email:au.email,full_name:nama,phone,block:blok,house_number:noR,land_area:luas,house_status:hs,role:'warga'}).select().single();if(error)throw error;const {data:st}=await sb.from('ipl_settings').select().eq('house_status',hs).maybeSingle();const amt=st?parseInt(st.amount):130000;const now=new Date();const y=now.getFullYear();for(let m=1;m<=now.getMonth()+1;m++)await sb.from('bills').insert({user_id:nu.id,period_month:m,period_year:y,amount:amt,status:'belum_bayar'});currentUser=nu;toast('✅ Profil disimpan!');document.getElementById('page-setup').classList.add('hidden');document.getElementById('setup-form').reset();delete window._tempAuth;enterWarga();}catch(err){toast(err.message,'error');btn.disabled=false;btn.textContent='💾 Simpan';}});
+// === SETUP: signup auth DI SINI kalau dari flow register ===
+document.getElementById('setup-form').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const btn=document.getElementById('btn-setup');
+  const reg=window._tempRegister;
+  const au=window._tempAuth;
+  if(!reg && !au){toast('Session hilang, silakan mulai ulang','error');return;}
+  const nama=document.getElementById('sp-name').value.trim();
+  const phone=document.getElementById('sp-phone').value.trim();
+  const blok=document.getElementById('sp-blok').value.trim().toUpperCase();
+  const noR=document.getElementById('sp-noRumah').value.trim();
+  const luas=parseFloat(document.getElementById('sp-luas').value)||0;
+  const hs=document.getElementById('sp-hs').value;
+  if(!nama||!blok||!noR){toast('Nama, Blok, No wajib!','error');return;}
+  btn.disabled=true;btn.textContent='Menyimpan...';
+  try{
+    let authUser=au;
+    if(reg){
+      btn.textContent='Membuat akun...';
+      const {data:sd,error:se}=await sb.auth.signUp({email:reg.email,password:reg.password});
+      if(se){
+        let m=se.message;
+        if(m.includes('already'))m='Email sudah terdaftar';
+        throw new Error(m);
+      }
+      if(!sd.user)throw new Error('Gagal membuat akun');
+      authUser=sd.user;
+      btn.textContent='Menyimpan profil...';
+    }
+    const {data:nu,error}=await sb.from('users').insert({
+      auth_id:authUser.id,email:authUser.email,full_name:nama,phone,
+      block:blok,house_number:noR,land_area:luas,house_status:hs,role:'warga'
+    }).select().single();
+    if(error)throw error;
+    const {data:st}=await sb.from('ipl_settings').select().eq('house_status',hs).maybeSingle();
+    const amt=st?parseInt(st.amount):130000;
+    const now=new Date();const y=now.getFullYear();
+    for(let m=1;m<=now.getMonth()+1;m++){
+      await sb.from('bills').insert({user_id:nu.id,period_month:m,period_year:y,amount:amt,status:'belum_bayar'});
+    }
+    currentUser=nu;
+    delete window._tempRegister;
+    delete window._tempAuth;
+    toast('✅ Akun & profil berhasil dibuat!');
+    document.getElementById('page-setup').classList.add('hidden');
+    document.getElementById('setup-form').reset();
+    enterWarga();
+  }catch(err){
+    toast(err.message,'error');
+    btn.disabled=false;btn.textContent='💾 Simpan & Buat Akun';
+  }
+});
+
+// === BATAL: buang temp, sign out kalau perlu, balik ke login ===
+async function cancelSetup(){
+  const ok=await confirmBox('Batalkan?','Data yang belum disimpan akan hilang. Lanjutkan?');
+  if(!ok)return;
+  if(window._tempRegister){delete window._tempRegister;}
+  if(window._tempAuth){
+    try{await sb.auth.signOut();}catch(_){}
+    delete window._tempAuth;
+  }
+  document.getElementById('setup-form').reset();
+  document.getElementById('page-setup').classList.add('hidden');
+  document.getElementById('page-login').classList.remove('hidden');
+  switchTab('login');
+  toast('Pendaftaran dibatalkan');
+}
 
 async function checkSession(){const {data:{session}}=await sb.auth.getSession();if(!session)return false;const {data:u}=await sb.from('users').select('*').eq('auth_id',session.user.id).maybeSingle();if(!u){window._tempAuth=session.user;document.getElementById('page-login').classList.add('hidden');document.getElementById('page-setup').classList.remove('hidden');return true;}currentUser=u;if(u.role==='admin'||u.role==='superuser')enterAdmin();else enterWarga();return true;}
 
