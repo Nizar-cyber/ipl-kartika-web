@@ -114,7 +114,7 @@ h3.section-title{color:#0A6644;margin-bottom:12px;display:flex;justify-content:s
 </main></div></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
-lsx.full.min.js"></script>
+/dist/xlsx.full.min.js"></script>
 .umd.min.js"></script>
 <script>
 const SUPABASE_URL='https://mcqvgytlepvarhxlxcvc.supabase.co';
@@ -168,6 +168,7 @@ document.getElementById('register-form').addEventListener('submit',async e=>{
 });
 
 // === SETUP: signup auth DI SINI kalau dari flow register ===
+// >>> PERUBAHAN: hanya bikin 1 tagihan bulan berjalan (bukan Jan-bulan sekarang)
 document.getElementById('setup-form').addEventListener('submit',async e=>{
   e.preventDefault();
   const btn=document.getElementById('btn-setup');
@@ -201,16 +202,23 @@ document.getElementById('setup-form').addEventListener('submit',async e=>{
       block:blok,house_number:noR,land_area:luas,house_status:hs,role:'warga'
     }).select().single();
     if(error)throw error;
+    // >>> Hanya generate tagihan bulan berjalan (bulan sekarang saja)
     const {data:st}=await sb.from('ipl_settings').select().eq('house_status',hs).maybeSingle();
     const amt=st?parseInt(st.amount):130000;
-    const now=new Date();const y=now.getFullYear();
-    for(let m=1;m<=now.getMonth()+1;m++){
-      await sb.from('bills').insert({user_id:nu.id,period_month:m,period_year:y,amount:amt,status:'belum_bayar'});
-    }
+    const now=new Date();
+    const curMonth=now.getMonth()+1;
+    const curYear=now.getFullYear();
+    await sb.from('bills').insert({
+      user_id:nu.id,
+      period_month:curMonth,
+      period_year:curYear,
+      amount:amt,
+      status:'belum_bayar'
+    });
     currentUser=nu;
     delete window._tempRegister;
     delete window._tempAuth;
-    toast('✅ Akun & profil berhasil dibuat!');
+    toast(`✅ Akun dibuat! Tagihan ${BULAN[curMonth]} ${curYear} siap dibayar`);
     document.getElementById('page-setup').classList.add('hidden');
     document.getElementById('setup-form').reset();
     enterWarga();
